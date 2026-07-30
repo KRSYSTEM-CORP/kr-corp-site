@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HeroParticles } from "@/components/marketing/HeroParticles";
+import { RevealOnScroll } from "@/components/marketing/RevealOnScroll";
 
 const CONTACT_PHONE = "+1 (904) 579-6156";
 const CONTACT_EMAIL = "contacto@krsystem-corp.com";
+const WHATSAPP_URL = `https://wa.me/${CONTACT_PHONE.replace(/[^+\d]/g, "").replace("+", "")}`;
 
 const products = [
   {
@@ -44,11 +47,60 @@ const services = [
   },
 ];
 
+const process = [
+  {
+    title: "Diagnóstico",
+    description: "Entendemos cómo opera tu negocio hoy: qué se resuelve con software y qué no.",
+  },
+  {
+    title: "Arquitectura",
+    description: "Diseñamos el sistema y sus datos antes de escribir la primera línea de código.",
+  },
+  {
+    title: "Build",
+    description: "Desarrollo iterativo, con entregas que puedes ver, probar y usar desde temprano.",
+  },
+  {
+    title: "Entrega y soporte",
+    description: "El sistema queda operando en tu negocio, y seguimos evolucionándolo contigo.",
+  },
+];
+
+const capabilities = [
+  "VES · USD · EUR",
+  "Tasa BCV automática",
+  "Pago Móvil",
+  "Binance Pay",
+  "IVA y control fiscal",
+  "Offline-first",
+  "Multi-sucursal",
+];
+
+const channels = [
+  {
+    label: "WhatsApp",
+    value: CONTACT_PHONE,
+    href: WHATSAPP_URL,
+  },
+  {
+    label: "Correo",
+    value: CONTACT_EMAIL,
+    href: `mailto:${CONTACT_EMAIL}`,
+  },
+  {
+    label: "Teléfono",
+    value: CONTACT_PHONE,
+    href: `tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`,
+  },
+];
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-slate-900">
+    <div className="flex min-h-screen flex-col bg-[#0a0912] text-[#f3f1f9]">
+      <RevealOnScroll />
+
       {/* Nav */}
-      <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/80 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-white/10 bg-[#0a0912]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <span className="flex items-center gap-2 text-lg font-semibold tracking-tight">
             <Image src="/logo.png" alt="KR System" width={28} height={30} className="h-7 w-auto" />
@@ -57,23 +109,29 @@ export default function Home() {
               SYSTEM
             </span>
           </span>
-          <nav className="hidden gap-8 text-sm font-medium text-slate-600 sm:flex">
-            <a href="#servicios" className="hover:text-slate-900">
+          <nav className="hidden gap-7 text-sm font-medium text-[#a29cbd] lg:flex">
+            <a href="#servicios" className="transition-colors hover:text-white">
               Servicios
             </a>
-            <a href="#soluciones" className="hover:text-slate-900">
+            <a href="#soluciones" className="transition-colors hover:text-white">
               Sistemas Empresariales
             </a>
-            <a href="#nosotros" className="hover:text-slate-900">
+            <a href="#proceso" className="transition-colors hover:text-white">
+              Proceso
+            </a>
+            <a href="#capacidad" className="transition-colors hover:text-white">
+              Capacidad
+            </a>
+            <a href="#nosotros" className="transition-colors hover:text-white">
               Nosotros
             </a>
-            <a href="#contacto" className="hover:text-slate-900">
+            <a href="#contacto" className="transition-colors hover:text-white">
               Contacto
             </a>
           </nav>
           <a
             href="#contacto"
-            className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-10px_rgba(226,9,140,0.6)] transition-opacity hover:opacity-90"
           >
             Hablemos
           </a>
@@ -81,28 +139,32 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32">
-          <span className="rounded-full bg-gradient-to-r from-[#433DDD]/10 to-[#E2098C]/10 px-4 py-1 text-sm font-medium text-[#7E2AC0]">
-            Diseño de apps y sistemas de software
+      <section className="relative overflow-hidden border-b border-white/10">
+        <HeroParticles />
+        <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32">
+          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-1 font-mono text-xs uppercase tracking-[0.14em] text-[#c9a6e8]">
+            // Ingeniería · Software · Finanzas · Citas
           </span>
-          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
-            Sistemas a medida para que tu empresa deje de improvisar
+          <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight text-balance sm:text-6xl">
+            Sistemas que se manejan{" "}
+            <span className="bg-gradient-to-r from-[#433DDD] via-[#7E2AC0] to-[#E2098C] bg-clip-text text-transparent">
+              solos.
+            </span>
           </h1>
-          <p className="max-w-2xl text-lg text-slate-600 sm:text-xl">
-            Diseñamos y desarrollamos aplicaciones y sistemas de gestión para pequeñas y medianas
-            empresas — ventas, inventario, finanzas y todo lo demás, en un solo lugar.
+          <p className="max-w-2xl text-lg text-[#a29cbd] sm:text-xl">
+            Diseñamos el sistema central de tu operación — ventas, inventario, finanzas o
+            citas — y nos quedamos hasta que corre sin ti.
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <a
               href="#contacto"
-              className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-6 py-3 text-base font-medium text-white transition-opacity hover:opacity-90"
+              className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-6 py-3 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(226,9,140,0.55)] transition-opacity hover:opacity-90"
             >
               Cuéntanos tu proyecto
             </a>
             <a
               href="#soluciones"
-              className="rounded-lg border border-slate-300 px-6 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-50"
+              className="rounded-lg border border-white/15 px-6 py-3 text-base font-medium text-[#f3f1f9] transition-colors hover:bg-white/5"
             >
               Ver nuestras soluciones
             </a>
@@ -110,42 +172,67 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Manifiesto */}
+      <section className="border-b border-white/10 px-6 py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
+            // Manifiesto
+          </span>
+          <p className="mt-5 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+            El mejor sistema es el que dejas de notar.
+          </p>
+          <p className="mt-4 text-[#a29cbd]">
+            No vendemos proyectos: construimos sistemas que se vuelven parte invisible de cómo
+            opera tu negocio. Código propio, control en tus manos, y un equipo que sigue ahí
+            cuando el sistema necesita crecer.
+          </p>
+        </div>
+      </section>
+
       {/* Servicios */}
       <section id="servicios" className="mx-auto w-full max-w-6xl px-6 py-20">
-        <div className="mb-12 max-w-2xl">
-          <h2 className="text-3xl font-bold tracking-tight">Lo que hacemos</h2>
-          <p className="mt-3 text-slate-600">
+        <div className="reveal mb-12 max-w-2xl">
+          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
+            // Servicios
+          </span>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
+            Lo que hacemos
+          </h2>
+          <p className="mt-3 text-[#a29cbd]">
             No vendemos plantillas genéricas — construimos exactamente lo que tu operación
             necesita.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s) => (
+          {services.map((s, i) => (
             <div
               key={s.title}
-              className="rounded-xl border border-slate-200 p-6 transition-shadow hover:shadow-md"
+              className="reveal rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-white/20"
+              style={{ transitionDelay: `${i * 60}ms` }}
             >
-              <h3 className="font-semibold text-slate-900">{s.title}</h3>
-              <p className="mt-2 text-sm text-slate-600">{s.description}</p>
+              <h3 className="font-semibold text-white">{s.title}</h3>
+              <p className="mt-2 text-sm text-[#a29cbd]">{s.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Sistemas Empresariales / productos destacados */}
-      <section id="soluciones" className="bg-slate-50 py-20">
+      <section id="soluciones" className="border-y border-white/10 bg-white/[0.02] py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-10 max-w-2xl">
-            <h2 className="text-3xl font-bold tracking-tight">Sistemas Empresariales</h2>
-            <p className="mt-3 text-slate-600">
-              Sistemas ya en uso por empresas reales, listos para adaptarse a la tuya.
-            </p>
+          <div className="reveal mb-10 max-w-2xl">
+            <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
+              // Sistemas Empresariales
+            </span>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
+              Sistemas ya en uso, listos para adaptarse a tu negocio
+            </h2>
           </div>
           <div className="flex flex-col gap-6">
             {products.map((p) => (
               <div
                 key={p.name}
-                className="flex flex-col items-start gap-8 rounded-2xl border border-slate-200 bg-white p-8 sm:flex-row sm:items-center"
+                className="reveal flex flex-col items-start gap-8 rounded-2xl border border-white/10 bg-[#131020] p-8 sm:flex-row sm:items-center"
               >
                 <Image
                   src={p.icon}
@@ -155,8 +242,8 @@ export default function Home() {
                   className="h-14 w-14 shrink-0 rounded-xl"
                 />
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-slate-900">{p.name}</h3>
-                  <p className="mt-2 text-slate-600">{p.description}</p>
+                  <h3 className="text-xl font-semibold text-white">{p.name}</h3>
+                  <p className="mt-2 text-[#a29cbd]">{p.description}</p>
                 </div>
                 <Link
                   href={p.url}
@@ -170,11 +257,65 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Proceso */}
+      <section id="proceso" className="mx-auto w-full max-w-6xl px-6 py-20">
+        <div className="reveal mb-12 max-w-2xl">
+          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
+            // Proceso
+          </span>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
+            Cómo es un build con nosotros
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+          {process.map((step, i) => (
+            <div key={step.title} className="reveal bg-[#0a0912] p-7">
+              <span className="font-mono text-3xl font-bold bg-gradient-to-r from-[#433DDD] to-[#E2098C] bg-clip-text text-transparent">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-3 font-semibold text-white">{step.title}</h3>
+              <p className="mt-2 text-sm text-[#a29cbd]">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Capacidad especializada */}
+      <section id="capacidad" className="border-y border-white/10 bg-white/[0.02] px-6 py-20">
+        <div className="mx-auto max-w-4xl">
+          <span className="reveal font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
+            // Capacidad especializada
+          </span>
+          <h2 className="reveal mt-3 text-3xl font-bold tracking-tight text-balance">
+            Software financiero pensado para Latinoamérica
+          </h2>
+          <p className="reveal mt-4 max-w-2xl text-[#a29cbd]">
+            La mayoría del software de gestión asume una sola moneda y un solo método de pago.
+            El nuestro nació resolviendo lo contrario: negocios que cobran en bolívares, dólares
+            y euros el mismo día, con una tasa que cambia, y que necesitan seguir vendiendo
+            aunque se caiga el internet.
+          </p>
+          <div className="reveal mt-8 flex flex-wrap gap-3">
+            {capabilities.map((c) => (
+              <span
+                key={c}
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 font-mono text-xs uppercase tracking-wide text-[#c9a6e8]"
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Nosotros */}
       <section id="nosotros" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="max-w-2xl">
-          <h2 className="text-3xl font-bold tracking-tight">Quiénes somos</h2>
-          <p className="mt-4 text-slate-600">
+        <div className="reveal max-w-2xl">
+          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
+            // Nosotros
+          </span>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">Quiénes somos</h2>
+          <p className="mt-4 text-[#a29cbd]">
             Somos un equipo enfocado en diseñar software que resuelve problemas reales de
             pequeñas y medianas empresas. Trabajamos de cerca con cada cliente para entender cómo
             opera su negocio antes de escribir una sola línea de código — el resultado es un
@@ -186,30 +327,39 @@ export default function Home() {
       {/* Contacto */}
       <section
         id="contacto"
-        className="bg-gradient-to-br from-[#433DDD] via-[#7E2AC0] to-[#E2098C] py-20 text-white"
+        className="bg-gradient-to-br from-[#433DDD] via-[#7E2AC0] to-[#E2098C] px-6 py-20 text-white"
       >
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 text-center">
-          <h2 className="text-3xl font-bold tracking-tight">¿Tienes un proyecto en mente?</h2>
-          <p className="max-w-xl text-white/80">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-balance">
+            ¿Tienes un proyecto en mente?
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-white/80">
             Escríbenos y conversemos sobre qué necesita tu empresa.
           </p>
-          <div className="flex flex-col items-center gap-2 text-lg font-medium">
-            <a href={`mailto:${CONTACT_EMAIL}`} className="hover:underline">
-              {CONTACT_EMAIL}
-            </a>
-            <a
-              href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`}
-              className="flex items-center gap-2 hover:underline"
-            >
-              <Image src="/whatsapp-icon.png" alt="" width={20} height={20} className="h-5 w-5" />
-              {CONTACT_PHONE}
-            </a>
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
+            {channels.map((c) => (
+              <a
+                key={c.label}
+                href={c.href}
+                target={c.label === "WhatsApp" ? "_blank" : undefined}
+                rel={c.label === "WhatsApp" ? "noopener noreferrer" : undefined}
+                className="flex flex-col items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-6 transition-colors hover:bg-white/15"
+              >
+                {c.label === "WhatsApp" && (
+                  <Image src="/whatsapp-icon.png" alt="" width={22} height={22} className="h-5 w-5" />
+                )}
+                <span className="font-mono text-xs uppercase tracking-wide text-white/70">
+                  {c.label}
+                </span>
+                <span className="font-medium">{c.value}</span>
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 py-8 text-center text-sm text-slate-500">
+      <footer className="border-t border-white/10 py-8 text-center text-sm text-[#6b6684]">
         © {new Date().getFullYear()} KR System. Todos los derechos reservados.
       </footer>
     </div>

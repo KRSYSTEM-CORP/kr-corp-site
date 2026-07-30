@@ -5,6 +5,51 @@
   --font-mono: var(--font-geist-mono);
 }
 
+:root {
+  --bg: #0a0912;
+  --bg-raised: #131020;
+  --bg-raised-2: #1a1628;
+  --ink: #f3f1f9;
+  --ink-dim: #a29cbd;
+  --ink-faint: #6b6684;
+  --line: rgba(243, 241, 249, 0.1);
+  --line-strong: rgba(243, 241, 249, 0.18);
+  --blue: #433ddd;
+  --violet: #7e2ac0;
+  --pink: #e2098c;
+}
+
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--violet);
+  color: #fff;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

@@ -142,20 +142,29 @@ export default function Home() {
       <section className="relative overflow-hidden border-b border-white/10">
         <HeroParticles />
         <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32">
-          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-1 font-mono text-xs uppercase tracking-[0.14em] text-[#c9a6e8]">
-            // Ingeniería · Software · Finanzas · Citas
+          <span
+            className="load-in rounded-full border border-white/10 bg-white/5 px-4 py-1 font-mono text-xs uppercase tracking-[0.14em] text-[#c9a6e8]"
+            style={{ animationDelay: "0ms" }}
+          >
+            Software · Finanzas · Citas · Automatización
           </span>
-          <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight text-balance sm:text-6xl">
+          <h1
+            className="load-in max-w-3xl text-4xl font-extrabold tracking-tight text-balance sm:text-6xl"
+            style={{ animationDelay: "120ms" }}
+          >
             Sistemas que se manejan{" "}
             <span className="bg-gradient-to-r from-[#433DDD] via-[#7E2AC0] to-[#E2098C] bg-clip-text text-transparent">
               solos.
             </span>
           </h1>
-          <p className="max-w-2xl text-lg text-[#a29cbd] sm:text-xl">
+          <p
+            className="load-in max-w-2xl text-lg text-[#a29cbd] sm:text-xl"
+            style={{ animationDelay: "240ms" }}
+          >
             Diseñamos el sistema central de tu operación — ventas, inventario, finanzas o
             citas — y nos quedamos hasta que corre sin ti.
           </p>
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+          <div className="load-in mt-4 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "360ms" }}>
             <a
               href="#contacto"
               className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-6 py-3 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(226,9,140,0.55)] transition-opacity hover:opacity-90"
@@ -176,7 +185,7 @@ export default function Home() {
       <section className="border-b border-white/10 px-6 py-20">
         <div className="mx-auto max-w-3xl text-center">
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
-            // Manifiesto
+            Manifiesto
           </span>
           <p className="mt-5 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
             El mejor sistema es el que dejas de notar.
@@ -193,7 +202,7 @@ export default function Home() {
       <section id="servicios" className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="reveal mb-12 max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
-            // Servicios
+            Servicios
           </span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
             Lo que hacemos
@@ -222,7 +231,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="reveal mb-10 max-w-2xl">
             <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
-              // Sistemas Empresariales
+              Sistemas Empresariales
             </span>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
               Sistemas ya en uso, listos para adaptarse a tu negocio
@@ -261,7 +270,7 @@ export default function Home() {
       <section id="proceso" className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="reveal mb-12 max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
-            // Proceso
+            Proceso
           </span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
             Cómo es un build con nosotros
@@ -284,7 +293,7 @@ export default function Home() {
       <section id="capacidad" className="border-y border-white/10 bg-white/[0.02] px-6 py-20">
         <div className="mx-auto max-w-4xl">
           <span className="reveal font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
-            // Capacidad especializada
+            Capacidad especializada
           </span>
           <h2 className="reveal mt-3 text-3xl font-bold tracking-tight text-balance">
             Software financiero pensado para Latinoamérica
@@ -312,7 +321,7 @@ export default function Home() {
       <section id="nosotros" className="mx-auto max-w-6xl px-6 py-20">
         <div className="reveal max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
-            // Nosotros
+            Nosotros
           </span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">Quiénes somos</h2>
           <p className="mt-4 text-[#a29cbd]">

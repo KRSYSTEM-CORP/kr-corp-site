@@ -34,22 +34,44 @@ body {
   color: #fff;
 }
 
+/* Apple-style ease-out-expo — a slow, decelerating settle rather than a
+   linear/ease fade, used throughout for both scroll reveals and the hero's
+   load-in sequence so the whole page shares one motion signature. */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(22px) scale(0.98);
   transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+}
+
+.load-in {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: load-in 1s var(--ease-out-expo) forwards;
+}
+
+@keyframes load-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .load-in {
     opacity: 1;
     transform: none;
     transition: none;
+    animation: none;
   }
 }

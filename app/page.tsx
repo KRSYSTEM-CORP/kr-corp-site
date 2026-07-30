@@ -1,8 +1,22 @@
 import Link from "next/link";
 
-const APP_URL = "https://appfinanzas.krsystem-corp.com";
 const CONTACT_PHONE = "+1 (904) 579-6156";
 const CONTACT_EMAIL = "contacto@krsystem-corp.com";
+
+const products = [
+  {
+    name: "App Finanzas",
+    url: "https://appfinanzas.krsystem-corp.com",
+    description:
+      "Punto de venta, inventario, finanzas y facturación en un solo sistema — pensado para pymes que venden en múltiples monedas y necesitan control real de su negocio.",
+  },
+  {
+    name: "App Citas",
+    url: "https://appcitas.krsystem-corp.com",
+    description:
+      "Agenda y reservas para negocios de servicios — control de citas, clientes, especialistas y pagos, con página pública de reservas para cada negocio.",
+  },
+];
 
 const services = [
   {
@@ -42,7 +56,7 @@ export default function Home() {
               Servicios
             </a>
             <a href="#soluciones" className="hover:text-slate-900">
-              Soluciones
+              Sistemas Empresariales
             </a>
             <a href="#nosotros" className="hover:text-slate-900">
               Nosotros
@@ -112,33 +126,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Soluciones / producto destacado */}
+      {/* Sistemas Empresariales / productos destacados */}
       <section id="soluciones" className="bg-slate-50 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-10 max-w-2xl">
-            <h2 className="text-3xl font-bold tracking-tight">Nuestras soluciones</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Sistemas Empresariales</h2>
             <p className="mt-3 text-slate-600">
               Sistemas ya en uso por empresas reales, listos para adaptarse a la tuya.
             </p>
           </div>
-          <div className="flex flex-col items-start gap-8 rounded-2xl border border-slate-200 bg-white p-8 sm:flex-row sm:items-center">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-xl font-bold text-white">
-              KR
-            </div>
-            <div className="flex-1">
-              <h3 className="text-xl font-semibold text-slate-900">App Finanzas</h3>
-              <p className="mt-2 text-slate-600">
-                Punto de venta, inventario, finanzas y facturación en un solo sistema — pensado
-                para pymes que venden en múltiples monedas y necesitan control real de su
-                negocio.
-              </p>
-            </div>
-            <Link
-              href={APP_URL}
-              className="shrink-0 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700"
-            >
-              Entrar al sistema →
-            </Link>
+          <div className="flex flex-col gap-6">
+            {products.map((p) => (
+              <div
+                key={p.name}
+                className="flex flex-col items-start gap-8 rounded-2xl border border-slate-200 bg-white p-8 sm:flex-row sm:items-center"
+              >
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-xl font-bold text-white">
+                  KR
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-slate-900">{p.name}</h3>
+                  <p className="mt-2 text-slate-600">{p.description}</p>
+                </div>
+                <Link
+                  href={p.url}
+                  className="shrink-0 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+                >
+                  Entrar al sistema →
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>

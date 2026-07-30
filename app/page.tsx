@@ -31,6 +31,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-white text-slate-900">
       {/* Nav */}
+      {/* auto-deploy test: 2026-07-30 */}
       <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <span className="text-lg font-semibold tracking-tight">

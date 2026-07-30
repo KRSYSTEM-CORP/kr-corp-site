@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const CONTACT_PHONE = "+1 (904) 579-6156";
@@ -7,12 +8,14 @@ const products = [
   {
     name: "App Finanzas",
     url: "https://appfinanzas.krsystem-corp.com",
+    icon: "/product-finanzas.png",
     description:
       "Punto de venta, inventario, finanzas y facturación en un solo sistema — pensado para pymes que venden en múltiples monedas y necesitan control real de su negocio.",
   },
   {
     name: "App Citas",
     url: "https://appcitas.krsystem-corp.com",
+    icon: "/product-citas.png",
     description:
       "Agenda y reservas para negocios de servicios — control de citas, clientes, especialistas y pagos, con página pública de reservas para cada negocio.",
   },
@@ -45,11 +48,14 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-white text-slate-900">
       {/* Nav */}
-      {/* auto-deploy test: 2026-07-30 */}
       <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-lg font-semibold tracking-tight">
-            KR<span className="text-blue-600"> SYSTEM</span>
+          <span className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+            <Image src="/logo.png" alt="KR System" width={28} height={30} className="h-7 w-auto" />
+            KR{" "}
+            <span className="bg-gradient-to-r from-[#433DDD] to-[#E2098C] bg-clip-text text-transparent">
+              SYSTEM
+            </span>
           </span>
           <nav className="hidden gap-8 text-sm font-medium text-slate-600 sm:flex">
             <a href="#servicios" className="hover:text-slate-900">
@@ -67,7 +73,7 @@ export default function Home() {
           </nav>
           <a
             href="#contacto"
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
             Hablemos
           </a>
@@ -75,9 +81,9 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32">
-          <span className="rounded-full bg-blue-100 px-4 py-1 text-sm font-medium text-blue-700">
+          <span className="rounded-full bg-gradient-to-r from-[#433DDD]/10 to-[#E2098C]/10 px-4 py-1 text-sm font-medium text-[#7E2AC0]">
             Diseño de apps y sistemas de software
           </span>
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
@@ -90,7 +96,7 @@ export default function Home() {
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <a
               href="#contacto"
-              className="rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-blue-700"
+              className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-6 py-3 text-base font-medium text-white transition-opacity hover:opacity-90"
             >
               Cuéntanos tu proyecto
             </a>
@@ -141,16 +147,20 @@ export default function Home() {
                 key={p.name}
                 className="flex flex-col items-start gap-8 rounded-2xl border border-slate-200 bg-white p-8 sm:flex-row sm:items-center"
               >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-xl font-bold text-white">
-                  KR
-                </div>
+                <Image
+                  src={p.icon}
+                  alt=""
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 shrink-0 rounded-xl"
+                />
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold text-slate-900">{p.name}</h3>
                   <p className="mt-2 text-slate-600">{p.description}</p>
                 </div>
                 <Link
                   href={p.url}
-                  className="shrink-0 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+                  className="shrink-0 rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
                 >
                   Entrar al sistema →
                 </Link>
@@ -174,10 +184,13 @@ export default function Home() {
       </section>
 
       {/* Contacto */}
-      <section id="contacto" className="bg-blue-600 py-20 text-white">
+      <section
+        id="contacto"
+        className="bg-gradient-to-br from-[#433DDD] via-[#7E2AC0] to-[#E2098C] py-20 text-white"
+      >
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 text-center">
           <h2 className="text-3xl font-bold tracking-tight">¿Tienes un proyecto en mente?</h2>
-          <p className="max-w-xl text-blue-100">
+          <p className="max-w-xl text-white/80">
             Escríbenos y conversemos sobre qué necesita tu empresa.
           </p>
           <div className="flex flex-col items-center gap-2 text-lg font-medium">

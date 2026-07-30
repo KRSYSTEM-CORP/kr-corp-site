@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HeroParticles } from "@/components/marketing/HeroParticles";
 import { RevealOnScroll } from "@/components/marketing/RevealOnScroll";
 
 const CONTACT_PHONE = "+1 (904) 579-6156";
@@ -135,7 +134,6 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/10">
-        <HeroParticles />
         <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32">
           <span
             className="load-in rounded-full border border-white/10 bg-white/5 px-4 py-1 font-mono text-xs uppercase tracking-[0.14em] text-[#c9a6e8]"

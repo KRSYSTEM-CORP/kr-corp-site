@@ -18,33 +18,35 @@ type Particle = {
 
 // Ambient field pinned behind the entire page (not just the hero), so the
 // brand gradient and product glyphs stay present while scrolling instead of
-// disappearing after the first section.
+// disappearing after the first section. Deliberately lightweight: capped
+// DPR, a small particle budget, and a paused loop off-screen/off-tab, since
+// this sits behind every single frame of scroll on the whole site.
 export function AmbientBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let particles: Particle[] = [];
     let width = 0;
     let height = 0;
-    let dpr = 1;
     let raf = 0;
+    let running = !reduce;
 
     function makeParticle(initial: boolean): Particle {
       return {
         x: Math.random() * width,
         y: initial ? Math.random() * height : height + 20,
-        speed: 0.07 + Math.random() * 0.16,
+        speed: 0.05 + Math.random() * 0.1,
         size: 11 + Math.random() * 9,
-        alpha: 0.03 + Math.random() * 0.06,
+        alpha: 0.03 + Math.random() * 0.05,
         color: STOPS[Math.floor(Math.random() * STOPS.length)],
         glyph: Math.random() > 0.45 ? GLYPHS[Math.floor(Math.random() * GLYPHS.length)] : null,
-        drift: (Math.random() - 0.5) * 0.15,
+        drift: (Math.random() - 0.5) * 0.12,
       };
     }
 
@@ -52,13 +54,13 @@ export function AmbientBackground() {
       if (!canvas) return;
       width = window.innerWidth;
       height = window.innerHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+      // Ambient decoration doesn't need retina sharpness — capping DPR at 1
+      // keeps the fill-rate cost of every frame low on high-density screens.
+      canvas.width = width;
+      canvas.height = height;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
-      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(44, Math.floor((width * height) / 28000));
+      const count = Math.min(22, Math.floor((width * height) / 55000));
       particles = Array.from({ length: count }, () => makeParticle(true));
     }
 
@@ -80,11 +82,22 @@ export function AmbientBackground() {
         if (p.y < -20) Object.assign(p, makeParticle(false));
       }
       ctx!.globalAlpha = 1;
-      if (!reduce) raf = requestAnimationFrame(frame);
+      if (running) raf = requestAnimationFrame(frame);
+    }
+
+    function handleVisibility() {
+      if (document.hidden) {
+        running = false;
+        cancelAnimationFrame(raf);
+      } else if (!reduce) {
+        running = true;
+        raf = requestAnimationFrame(frame);
+      }
     }
 
     resize();
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", handleVisibility);
     if (reduce) {
       frame();
     } else {
@@ -93,6 +106,7 @@ export function AmbientBackground() {
 
     return () => {
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibility);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -101,7 +115,6 @@ export function AmbientBackground() {
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
       <div className="ambient-blob ambient-blob-1" />
       <div className="ambient-blob ambient-blob-2" />
-      <div className="ambient-blob ambient-blob-3" />
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-70" />
     </div>
   );

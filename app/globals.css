@@ -75,3 +75,55 @@ body {
     animation: none;
   }
 }
+
+/* Slow-drifting gradient blobs behind the whole page — combined with the
+   glyph canvas in AmbientBackground.tsx to keep the brand gradient alive
+   past the hero instead of confining it to one section. */
+.ambient-blob {
+  position: absolute;
+  width: 46vw;
+  height: 46vw;
+  max-width: 640px;
+  max-height: 640px;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.22;
+  will-change: transform;
+}
+.ambient-blob-1 {
+  top: -12%;
+  left: -12%;
+  background: var(--blue);
+  animation: drift-1 26s ease-in-out infinite;
+}
+.ambient-blob-2 {
+  top: 32%;
+  right: -16%;
+  background: var(--pink);
+  animation: drift-2 32s ease-in-out infinite;
+}
+.ambient-blob-3 {
+  bottom: -18%;
+  left: 22%;
+  background: var(--violet);
+  animation: drift-3 38s ease-in-out infinite;
+}
+
+@keyframes drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6vw, 8vh) scale(1.1); }
+}
+@keyframes drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8vw, 6vh) scale(0.95); }
+}
+@keyframes drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(5vw, -7vh) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-blob {
+    animation: none;
+  }
+}

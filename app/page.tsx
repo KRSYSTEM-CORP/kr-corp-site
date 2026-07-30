@@ -12,6 +12,8 @@ const products = [
     name: "App Finanzas",
     url: "https://appfinanzas.krsystem-corp.com",
     icon: "/product-finanzas.png",
+    desktopShot: "/screenshot-finanzas-desktop.png",
+    mobileShot: "/screenshot-finanzas-mobile.png",
     description:
       "Punto de venta, inventario, finanzas y facturación en un solo sistema — pensado para pymes que venden en múltiples monedas y necesitan control real de su negocio.",
   },
@@ -19,6 +21,8 @@ const products = [
     name: "App Citas",
     url: "https://appcitas.krsystem-corp.com",
     icon: "/product-citas.png",
+    desktopShot: "/screenshot-citas-desktop.png",
+    mobileShot: "/screenshot-citas-mobile.png",
     description:
       "Agenda y reservas para negocios de servicios — control de citas, clientes, especialistas y pagos, con página pública de reservas para cada negocio.",
   },
@@ -26,54 +30,48 @@ const products = [
 
 const services = [
   {
-    title: "Apps a medida",
+    title: "Resolución de problemas operativos",
     description:
-      "Aplicaciones web y móviles diseñadas específicamente para cómo trabaja tu negocio, no al revés.",
+      "Encontramos en tu día a día qué te está costando tiempo, dinero o control — ahí empieza el sistema.",
   },
   {
-    title: "Sistemas de gestión",
+    title: "Construcción de sistemas a medida",
     description:
-      "Ventas, inventario, finanzas y contabilidad en un solo sistema, con respaldo de base de datos real.",
+      "Software propio diseñado para cómo trabaja tu negocio, no una plantilla forzada a encajar.",
   },
   {
-    title: "Automatización",
+    title: "Consolidación de la operación",
     description:
-      "Reportes, facturación y procesos repetitivos resueltos con software, no con hojas de cálculo.",
+      "Ventas, inventario, finanzas o citas en un mismo sistema, con información que por fin cuadra.",
   },
   {
-    title: "Soporte y evolución",
+    title: "Acompañamiento continuo",
     description:
-      "Tu sistema crece contigo — seguimos agregando funciones a medida que tu empresa lo necesita.",
+      "El sistema no se entrega y se olvida: seguimos ajustándolo mientras tu negocio cambia.",
   },
 ];
 
 const process = [
   {
-    title: "Diagnóstico",
-    description: "Entendemos cómo opera tu negocio hoy: qué se resuelve con software y qué no.",
+    title: "Conversación inicial",
+    description:
+      "Escuchamos qué se rompe, qué se repite y qué te quita tiempo cada semana, antes de hablar de tecnología.",
   },
   {
-    title: "Arquitectura",
-    description: "Diseñamos el sistema y sus datos antes de escribir la primera línea de código.",
+    title: "Mapa del sistema",
+    description:
+      "Convertimos esas fricciones en un diseño concreto: qué datos, qué pantallas, qué reglas de negocio.",
   },
   {
-    title: "Build",
-    description: "Desarrollo iterativo, con entregas que puedes ver, probar y usar desde temprano.",
+    title: "Construcción en tramos",
+    description:
+      "Ves el sistema tomar forma en entregas cortas que puedes probar, no en una sola revelación al final.",
   },
   {
-    title: "Entrega y soporte",
-    description: "El sistema queda operando en tu negocio, y seguimos evolucionándolo contigo.",
+    title: "Adopción y ajuste",
+    description:
+      "El sistema entra en tu operación real y seguimos afinándolo con el uso, no con suposiciones.",
   },
-];
-
-const capabilities = [
-  "VES · USD · EUR",
-  "Tasa BCV automática",
-  "Pago Móvil",
-  "Binance Pay",
-  "IVA y control fiscal",
-  "Offline-first",
-  "Multi-sucursal",
 ];
 
 const channels = [
@@ -119,9 +117,6 @@ export default function Home() {
             <a href="#proceso" className="transition-colors hover:text-white">
               Proceso
             </a>
-            <a href="#capacidad" className="transition-colors hover:text-white">
-              Capacidad
-            </a>
             <a href="#nosotros" className="transition-colors hover:text-white">
               Nosotros
             </a>
@@ -152,17 +147,17 @@ export default function Home() {
             className="load-in max-w-3xl text-4xl font-extrabold tracking-tight text-balance sm:text-6xl"
             style={{ animationDelay: "120ms" }}
           >
-            Sistemas que se manejan{" "}
+            Cada problema de tu negocio puede ser un{" "}
             <span className="bg-gradient-to-r from-[#433DDD] via-[#7E2AC0] to-[#E2098C] bg-clip-text text-transparent">
-              solos.
+              sistema que lo resuelve.
             </span>
           </h1>
           <p
             className="load-in max-w-2xl text-lg text-[#a29cbd] sm:text-xl"
             style={{ animationDelay: "240ms" }}
           >
-            Diseñamos el sistema central de tu operación — ventas, inventario, finanzas o
-            citas — y nos quedamos hasta que corre sin ti.
+            Construimos el software detrás de tu operación — ventas, inventario, finanzas o
+            citas — partiendo siempre de lo mismo: qué te está costando tiempo o dinero hoy.
           </p>
           <div className="load-in mt-4 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "360ms" }}>
             <a
@@ -185,15 +180,17 @@ export default function Home() {
       <section className="border-b border-white/10 px-6 py-20">
         <div className="mx-auto max-w-3xl text-center">
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
-            Manifiesto
+            Cómo pensamos
           </span>
           <p className="mt-5 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
-            El mejor sistema es el que dejas de notar.
+            Un problema sin resolver no desaparece: se repite cada día hasta que alguien lo
+            convierte en sistema.
           </p>
           <p className="mt-4 text-[#a29cbd]">
-            No vendemos proyectos: construimos sistemas que se vuelven parte invisible de cómo
-            opera tu negocio. Código propio, control en tus manos, y un equipo que sigue ahí
-            cuando el sistema necesita crecer.
+            No partimos de una plantilla ni de una lista de funciones. Partimos del problema real
+            de tu operación — un inventario que no cuadra, una caja que no cierra, una agenda en
+            papel — y construimos el sistema que lo resuelve de raíz. Código propio, datos tuyos,
+            y un equipo que sigue construyendo contigo.
           </p>
         </div>
       </section>
@@ -237,29 +234,56 @@ export default function Home() {
               Sistemas ya en uso, listos para adaptarse a tu negocio
             </h2>
           </div>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-10">
             {products.map((p) => (
               <div
                 key={p.name}
-                className="reveal flex flex-col items-start gap-8 rounded-2xl border border-white/10 bg-[#131020] p-8 sm:flex-row sm:items-center"
+                className="reveal overflow-hidden rounded-2xl border border-white/10 bg-[#131020]"
               >
-                <Image
-                  src={p.icon}
-                  alt=""
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 shrink-0 rounded-xl"
-                />
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-white">{p.name}</h3>
-                  <p className="mt-2 text-[#a29cbd]">{p.description}</p>
+                <div className="relative border-b border-white/10 bg-[#0a0912] px-6 pt-6 pb-12 sm:px-10 sm:pt-8">
+                  <div className="mx-auto max-w-xl overflow-hidden rounded-lg border border-white/10 shadow-2xl">
+                    <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.04] px-3 py-2">
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    </div>
+                    <Image
+                      src={p.desktopShot}
+                      alt={`${p.name} en computador`}
+                      width={960}
+                      height={600}
+                      className="h-auto w-full"
+                    />
+                  </div>
+                  <div className="absolute -bottom-6 right-8 w-20 overflow-hidden rounded-2xl border-4 border-[#0a0912] shadow-2xl sm:right-12 sm:w-24">
+                    <Image
+                      src={p.mobileShot}
+                      alt={`${p.name} en móvil`}
+                      width={390}
+                      height={844}
+                      className="h-auto w-full"
+                    />
+                  </div>
                 </div>
-                <Link
-                  href={p.url}
-                  className="shrink-0 rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
-                >
-                  Entrar al sistema →
-                </Link>
+                <div className="flex flex-col items-start gap-8 p-8 sm:flex-row sm:items-center">
+                  <Image
+                    src={p.icon}
+                    alt=""
+                    width={56}
+                    height={56}
+                    className="h-14 w-14 shrink-0 rounded-xl"
+                  />
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-white">{p.name}</h3>
+                    <p className="mt-2 text-[#a29cbd]">{p.description}</p>
+                  </div>
+                  <Link
+                    href={p.url}
+                    className="shrink-0 rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                  >
+                    Entrar al sistema →
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -273,7 +297,7 @@ export default function Home() {
             Proceso
           </span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
-            Cómo es un build con nosotros
+            Así construimos cada sistema
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
@@ -286,34 +310,6 @@ export default function Home() {
               <p className="mt-2 text-sm text-[#a29cbd]">{step.description}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Capacidad especializada */}
-      <section id="capacidad" className="border-y border-white/10 bg-white/[0.02] px-6 py-20">
-        <div className="mx-auto max-w-4xl">
-          <span className="reveal font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
-            Capacidad especializada
-          </span>
-          <h2 className="reveal mt-3 text-3xl font-bold tracking-tight text-balance">
-            Software financiero pensado para Latinoamérica
-          </h2>
-          <p className="reveal mt-4 max-w-2xl text-[#a29cbd]">
-            La mayoría del software de gestión asume una sola moneda y un solo método de pago.
-            El nuestro nació resolviendo lo contrario: negocios que cobran en bolívares, dólares
-            y euros el mismo día, con una tasa que cambia, y que necesitan seguir vendiendo
-            aunque se caiga el internet.
-          </p>
-          <div className="reveal mt-8 flex flex-wrap gap-3">
-            {capabilities.map((c) => (
-              <span
-                key={c}
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 font-mono text-xs uppercase tracking-wide text-[#c9a6e8]"
-              >
-                {c}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 

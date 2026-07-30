@@ -34,7 +34,7 @@ export default function Home() {
       <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <span className="text-lg font-semibold tracking-tight">
-            KR<span className="text-blue-600"> System Corp</span>
+            KR<span className="text-blue-600"> SYSTEM</span>
           </span>
           <nav className="hidden gap-8 text-sm font-medium text-slate-600 sm:flex">
             <a href="#servicios" className="hover:text-slate-900">
@@ -125,7 +125,7 @@ export default function Home() {
               KR
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-slate-900">KYRA System</h3>
+              <h3 className="text-xl font-semibold text-slate-900">App Finanzas</h3>
               <p className="mt-2 text-slate-600">
                 Punto de venta, inventario, finanzas y facturación en un solo sistema — pensado
                 para pymes que venden en múltiples monedas y necesitan control real de su
@@ -175,7 +175,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-slate-200 py-8 text-center text-sm text-slate-500">
-        © {new Date().getFullYear()} KR System Corp. Todos los derechos reservados.
+        © {new Date().getFullYear()} KR System. Todos los derechos reservados.
       </footer>
     </div>
   );

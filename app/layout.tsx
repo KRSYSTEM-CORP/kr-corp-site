@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KR System Corp — Diseño de apps y sistemas a medida",
+  title: "KR System — Diseño de apps y sistemas a medida",
   description:
     "Diseñamos y desarrollamos aplicaciones, sistemas y software a medida para pequeñas y medianas empresas.",
 };

@@ -197,7 +197,11 @@ export default function Home() {
             <a href={`mailto:${CONTACT_EMAIL}`} className="hover:underline">
               {CONTACT_EMAIL}
             </a>
-            <a href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`} className="hover:underline">
+            <a
+              href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`}
+              className="flex items-center gap-2 hover:underline"
+            >
+              <Image src="/whatsapp-icon.png" alt="" width={20} height={20} className="h-5 w-5" />
               {CONTACT_PHONE}
             </a>
           </div>

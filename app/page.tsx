@@ -8,8 +8,8 @@ const WHATSAPP_URL = `https://wa.me/${CONTACT_PHONE.replace(/[^+\d]/g, "").repla
 
 const products = [
   {
-    name: "App Finanzas",
-    url: "https://appfinanzas.krsystem-corp.com",
+    name: "KR POS",
+    url: "https://krpos.krsystem-corp.com",
     icon: "/product-finanzas.png",
     desktopShot: "/screenshot-finanzas-desktop.png",
     mobileShot: "/screenshot-finanzas-mobile.png",
@@ -17,8 +17,8 @@ const products = [
       "Punto de venta, inventario, finanzas y facturación en un solo sistema — pensado para pymes que venden en múltiples monedas y necesitan control real de su negocio.",
   },
   {
-    name: "App Citas",
-    url: "https://appcitas.krsystem-corp.com",
+    name: "KR Citas",
+    url: "https://krcitas.krsystem-corp.com",
     icon: "/product-citas.png",
     desktopShot: "/screenshot-citas-desktop.png",
     mobileShot: "/screenshot-citas-mobile.png",

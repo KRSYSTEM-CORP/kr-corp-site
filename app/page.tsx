@@ -2,15 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/marketing/Reveal";
 import { TrialBanner } from "@/components/marketing/TrialBanner";
 import { FluidText } from "@/components/marketing/FluidText";
 import { TextMotion } from "@/components/marketing/TextMotion";
-import { FluidGlassButton } from "@/components/marketing/FluidGlassButton";
 import { SiteNavbar } from "@/components/marketing/SiteNavbar";
 import { MotionTile } from "@/components/marketing/MotionTile";
-import { LiquidFluidBackground } from "@/components/marketing/LiquidFluidBackground";
+
+// Both pull in a heavy runtime (three.js is ~720KB minified; the fluid sim
+// is a big chunk of its own GLSL source) that has no reason to sit in the
+// page's initial JS — the button is a hover effect and the fluid sim is
+// below the fold, so both load in the background after the page is
+// already interactive instead of blocking first paint.
+const FluidGlassButton = dynamic(
+  () => import("@/components/marketing/FluidGlassButton").then((m) => m.FluidGlassButton),
+  {
+    ssr: false,
+    loading: () => (
+      <span className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-6 py-3 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(226,9,140,0.55)]">
+        Cuéntanos tu proyecto
+      </span>
+    ),
+  }
+);
+const LiquidFluidBackground = dynamic(
+  () => import("@/components/marketing/LiquidFluidBackground").then((m) => m.LiquidFluidBackground),
+  { ssr: false }
+);
 
 const CONTACT_PHONE = "+1 (904) 579-6156";
 const CONTACT_EMAIL = "contacto@krsystem-corp.com";

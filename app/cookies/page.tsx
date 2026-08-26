@@ -21,7 +21,7 @@ export default function CookiesNoticePage() {
           navegarlo.
         </p>
         <p>
-          Nuestros productos (KR POS, KR Citas, KR ChatBot) sí usan una cookie de sesión estrictamente
+          Nuestros productos (KR POS, KR Citas) sí usan una cookie de sesión estrictamente
           necesaria para mantenerte con la sesión iniciada una vez te registras — el detalle de esa
           cookie está en el Aviso de Cookies dentro de cada producto.
         </p>

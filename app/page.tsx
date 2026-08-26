@@ -57,15 +57,6 @@ const products = [
     description:
       "Agenda y reservas para negocios de servicios — control de citas, clientes, especialistas y pagos, con página pública de reservas para cada negocio.",
   },
-  {
-    name: "KR ChatBot",
-    url: "https://krchatbot.krsystem-corp.com",
-    icon: "/product-chatbot.png",
-    desktopShot: "/screenshot-chatbot-desktop.png",
-    mobileShot: "/screenshot-chatbot-mobile.png",
-    description:
-      "Bandeja compartida de WhatsApp con IA — responde, etiqueta y crea tickets sola o en modo pasivo junto a tu equipo, con automatizaciones y envíos masivos.",
-  },
 ];
 
 const services = [
@@ -161,7 +152,7 @@ export default function Home() {
             variants={heroItem}
             className="rounded-full border border-white/10 bg-white/5 px-4 py-1 font-mono text-xs uppercase tracking-[0.14em] text-[#c9a6e8]"
           >
-            ✦ 14 días gratis · Software · Finanzas · Citas · WhatsApp con IA
+            ✦ 14 días gratis · Software · Finanzas · Citas
           </motion.span>
           <motion.div variants={heroItem} className="w-full max-w-4xl">
             <FluidText

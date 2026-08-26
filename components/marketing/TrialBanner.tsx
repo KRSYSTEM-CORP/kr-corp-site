@@ -14,7 +14,7 @@ export function TrialBanner() {
       className="relative z-30 overflow-hidden border-b border-white/10 bg-gradient-to-r from-[#433DDD] via-[#7E2AC0] to-[#E2098C] px-4 py-2 text-center text-sm font-medium text-white"
     >
       <span aria-hidden="true">✦</span>{" "}
-      14 días gratis en KR POS, KR Citas y KR ChatBot — sin tarjeta, sin compromiso.{" "}
+      14 días gratis en KR POS y KR Citas — sin tarjeta, sin compromiso.{" "}
       <a href="#contacto" className="underline underline-offset-2 hover:no-underline">
         Empieza hoy →
       </a>

@@ -10,10 +10,10 @@ export default function PrivacyPolicyPage() {
       <LegalSection title="1. Quiénes somos">
         <p>
           KR SYSTEM (&quot;nosotros&quot;, &quot;la empresa&quot;) es la empresa desarrolladora de KR
-          POS, KR Citas y KR ChatBot, un conjunto de sistemas de gestión para negocios: punto de
-          venta, inventario y facturación; agenda de citas y clientes; y atención por WhatsApp. Esta
-          Política de Privacidad explica cómo tratamos la información en este sitio web y, en
-          general, en nuestros productos.
+          POS y KR Citas, un conjunto de sistemas de gestión para negocios: punto de venta,
+          inventario y facturación; y agenda de citas y clientes. Esta Política de Privacidad
+          explica cómo tratamos la información en este sitio web y, en general, en nuestros
+          productos.
         </p>
       </LegalSection>
 
@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
 
       <LegalSection title="3. Si te conviertes en cliente de un producto">
         <p>
-          Al registrarte en KR POS, KR Citas o KR ChatBot recopilamos los datos necesarios para
+          Al registrarte en KR POS o KR Citas recopilamos los datos necesarios para
           prestarte el servicio: datos de tu cuenta (nombre, correo, teléfono, contraseña cifrada) y
           los datos operativos de tu negocio que tú mismo registras (clientes, ventas, citas,
           inventario, conversaciones, etc.). Esos datos son tuyos — nosotros solo los alojamos y

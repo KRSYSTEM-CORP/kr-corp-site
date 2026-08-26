@@ -9,7 +9,7 @@ export default function TermsPage() {
     <LegalDocument title="Términos y Condiciones" updatedAt={LEGAL_UPDATED_AT}>
       <LegalSection title="1. Aceptación de los términos">
         <p>
-          Al usar este sitio web o crear una cuenta en KR POS, KR Citas, KR ChatBot o cualquier otro
+          Al usar este sitio web o crear una cuenta en KR POS, KR Citas o cualquier otro
           sistema de KR SYSTEM, aceptas estos Términos y Condiciones. Si no estás de acuerdo, no
           debes usar el servicio.
         </p>
@@ -18,10 +18,9 @@ export default function TermsPage() {
       <LegalSection title="2. Descripción del servicio">
         <p>
           KR SYSTEM diseña y desarrolla software a medida y ofrece sus propios productos de
-          suscripción: KR POS (punto de venta, inventario y facturación), KR Citas (agenda y clientes)
-          y KR ChatBot (atención por WhatsApp con IA). Podemos agregar, modificar o retirar funciones
-          de estos productos en cualquier momento, procurando notificarlo con antelación razonable
-          cuando el cambio sea significativo.
+          suscripción: KR POS (punto de venta, inventario y facturación) y KR Citas (agenda y
+          clientes). Podemos agregar, modificar o retirar funciones de estos productos en cualquier
+          momento, procurando notificarlo con antelación razonable cuando el cambio sea significativo.
         </p>
       </LegalSection>
 
@@ -35,7 +34,7 @@ export default function TermsPage() {
 
       <LegalSection title="4. Suscripción y pagos de nuestros productos">
         <p>
-          El uso de KR POS, KR Citas y KR ChatBot requiere el pago de una tarifa periódica. El pago se
+          El uso de KR POS y KR Citas requiere el pago de una tarifa periódica. El pago se
           coordina de forma manual (por ejemplo, transferencia o Binance) y se confirma reportándolo
           dentro del producto y por WhatsApp; la activación o reactivación de tu cuenta queda sujeta a
           la verificación de ese pago por nuestro equipo. Si tu cuenta queda en mora, podemos suspender
@@ -54,9 +53,9 @@ export default function TermsPage() {
 
       <LegalSection title="6. Propiedad intelectual">
         <p>
-          El software, el diseño, las marcas y el contenido de este sitio, de KR POS, KR Citas y KR
-          ChatBot son propiedad de KR SYSTEM. Estos Términos no te otorgan ningún derecho sobre ellos
-          más allá del uso del sitio o del servicio contratado.
+          El software, el diseño, las marcas y el contenido de este sitio, de KR POS y de KR Citas
+          son propiedad de KR SYSTEM. Estos Términos no te otorgan ningún derecho sobre ellos más
+          allá del uso del sitio o del servicio contratado.
         </p>
       </LegalSection>
 

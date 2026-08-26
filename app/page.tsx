@@ -25,6 +25,15 @@ const products = [
     description:
       "Agenda y reservas para negocios de servicios — control de citas, clientes, especialistas y pagos, con página pública de reservas para cada negocio.",
   },
+  {
+    name: "KR ChatBot",
+    url: "https://krchatbot.krsystem-corp.com",
+    icon: "/product-chatbot.png",
+    desktopShot: "/screenshot-chatbot-desktop.png",
+    mobileShot: "/screenshot-chatbot-mobile.png",
+    description:
+      "Bandeja compartida de WhatsApp con IA — responde, etiqueta y crea tickets sola o en modo pasivo junto a tu equipo, con automatizaciones y envíos masivos.",
+  },
 ];
 
 const services = [
@@ -139,7 +148,7 @@ export default function Home() {
             className="load-in rounded-full border border-white/10 bg-white/5 px-4 py-1 font-mono text-xs uppercase tracking-[0.14em] text-[#c9a6e8]"
             style={{ animationDelay: "0ms" }}
           >
-            Software · Finanzas · Citas · Automatización
+            Software · Finanzas · Citas · WhatsApp con IA · Automatización
           </span>
           <h1
             className="load-in max-w-3xl text-4xl font-extrabold tracking-tight text-balance sm:text-6xl"
@@ -362,8 +371,19 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-8 text-center text-sm text-[#6b6684]">
-        © {new Date().getFullYear()} KR System. Todos los derechos reservados.
+      <footer className="flex flex-col items-center gap-3 border-t border-white/10 py-8 text-center text-sm text-[#6b6684]">
+        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+          <Link href="/privacidad" className="transition-colors hover:text-white">
+            Política de Privacidad
+          </Link>
+          <Link href="/terminos" className="transition-colors hover:text-white">
+            Términos y Condiciones
+          </Link>
+          <Link href="/cookies" className="transition-colors hover:text-white">
+            Aviso de Cookies
+          </Link>
+        </div>
+        <p>© {new Date().getFullYear()} KR System. Todos los derechos reservados.</p>
       </footer>
     </div>
   );

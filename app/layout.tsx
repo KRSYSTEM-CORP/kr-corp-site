@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, DM_Sans, Geist_Mono } from "next/font/google";
 import { AmbientBackground } from "@/components/marketing/AmbientBackground";
+import { StarfieldBackground } from "@/components/marketing/StarfieldBackground";
 import { PageIntro } from "@/components/marketing/PageIntro";
 import { MotionProvider } from "@/components/marketing/MotionProvider";
 import "./globals.css";
@@ -41,6 +42,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#0a0912] text-[#f3f1f9] font-(family-name:--font-body)">
         <MotionProvider>
+          <StarfieldBackground />
           <AmbientBackground />
           <PageIntro />
           {children}

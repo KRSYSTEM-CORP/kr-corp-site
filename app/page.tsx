@@ -5,6 +5,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/marketing/Reveal";
 import { TrialBanner } from "@/components/marketing/TrialBanner";
+import { FluidText } from "@/components/marketing/FluidText";
+import { TextMotion } from "@/components/marketing/TextMotion";
+import { FluidGlassButton } from "@/components/marketing/FluidGlassButton";
+import { SiteNavbar } from "@/components/marketing/SiteNavbar";
+import { MotionTile } from "@/components/marketing/MotionTile";
+import { LiquidFluidBackground } from "@/components/marketing/LiquidFluidBackground";
 
 const CONTACT_PHONE = "+1 (904) 579-6156";
 const CONTACT_EMAIL = "contacto@krsystem-corp.com";
@@ -121,43 +127,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-[#0a0912] text-[#f3f1f9]">
       <TrialBanner />
 
-      {/* Nav */}
-      <header className="sticky top-0 z-20 border-b border-white/10 bg-[#0a0912]/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="flex items-center gap-2 font-heading text-lg font-semibold tracking-tight">
-            <Image src="/logo.png" alt="KR System" width={28} height={30} className="h-7 w-auto" />
-            KR{" "}
-            <span className="bg-gradient-to-r from-[#433DDD] to-[#E2098C] bg-clip-text text-transparent">
-              SYSTEM
-            </span>
-          </span>
-          <nav className="hidden gap-7 text-sm font-medium text-[#a29cbd] lg:flex">
-            <a href="#servicios" className="transition-colors hover:text-white">
-              Servicios
-            </a>
-            <a href="#soluciones" className="transition-colors hover:text-white">
-              Sistemas Empresariales
-            </a>
-            <a href="#proceso" className="transition-colors hover:text-white">
-              Proceso
-            </a>
-            <a href="#nosotros" className="transition-colors hover:text-white">
-              Nosotros
-            </a>
-            <a href="#contacto" className="transition-colors hover:text-white">
-              Contacto
-            </a>
-          </nav>
-          <motion.a
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            href="#contacto"
-            className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-10px_rgba(226,9,140,0.6)]"
-          >
-            Hablemos
-          </motion.a>
-        </div>
-      </header>
+      <SiteNavbar />
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/10">
@@ -173,28 +143,21 @@ export default function Home() {
           >
             ✦ 14 días gratis · Software · Finanzas · Citas · WhatsApp con IA
           </motion.span>
-          <motion.h1
-            variants={heroItem}
-            className="max-w-3xl font-heading text-4xl font-bold tracking-tight text-balance sm:text-6xl"
-          >
-            Cada problema de tu negocio puede ser un{" "}
-            <span className="bg-gradient-to-r from-[#433DDD] via-[#7E2AC0] to-[#E2098C] bg-clip-text text-transparent">
-              sistema que lo resuelve.
-            </span>
-          </motion.h1>
+          <motion.div variants={heroItem} className="w-full max-w-4xl">
+            <FluidText
+              lines={[
+                { text: "Cada problema de tu negocio puede ser un" },
+                { text: "sistema que lo resuelve.", gradient: true },
+              ]}
+              headingClassName="font-heading text-4xl font-bold tracking-tight text-balance sm:text-6xl"
+            />
+          </motion.div>
           <motion.p variants={heroItem} className="max-w-2xl text-lg text-[#a29cbd] sm:text-xl">
             Construimos el software detrás de tu operación — ventas, inventario, finanzas o
             citas — partiendo siempre de lo mismo: qué te está costando tiempo o dinero hoy.
           </motion.p>
-          <motion.div variants={heroItem} className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <motion.a
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              href="#contacto"
-              className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-6 py-3 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(226,9,140,0.55)]"
-            >
-              Cuéntanos tu proyecto
-            </motion.a>
+          <motion.div variants={heroItem} className="mt-4 flex flex-col items-center gap-3 sm:flex-row">
+            <FluidGlassButton text="Cuéntanos tu proyecto" href="#contacto" baseColor="#0a0912" glassColor="#7E2AC0" />
             <motion.a
               whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.06)" }}
               whileTap={{ scale: 0.97 }}
@@ -232,8 +195,8 @@ export default function Home() {
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
             Servicios
           </span>
-          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
-            Lo que hacemos
+          <h2 aria-label="Lo que hacemos" className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
+            <TextMotion text="Lo que hacemos" preset="rise" decorative />
           </h2>
           <p className="mt-3 text-[#a29cbd]">
             No vendemos plantillas genéricas — construimos exactamente lo que tu operación
@@ -243,13 +206,7 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
-              <motion.div
-                whileHover={{ y: -4, borderColor: "rgba(255,255,255,0.25)" }}
-                className="h-full rounded-xl border border-white/10 bg-white/[0.03] p-6"
-              >
-                <h3 className="font-heading font-semibold text-white">{s.title}</h3>
-                <p className="mt-2 text-sm text-[#a29cbd]">{s.description}</p>
-              </motion.div>
+              <MotionTile title={s.title} description={s.description} />
             </Reveal>
           ))}
         </div>
@@ -262,8 +219,11 @@ export default function Home() {
             <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
               Sistemas Empresariales
             </span>
-            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
-              Sistemas ya en uso, listos para adaptarse a tu negocio
+            <h2
+              aria-label="Sistemas ya en uso, listos para adaptarse a tu negocio"
+              className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance"
+            >
+              <TextMotion text="Sistemas ya en uso, listos para adaptarse a tu negocio" preset="mask" decorative />
             </h2>
           </Reveal>
           <div className="flex flex-col gap-10">
@@ -329,8 +289,8 @@ export default function Home() {
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
             Proceso
           </span>
-          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
-            Así construimos cada sistema
+          <h2 aria-label="Así construimos cada sistema" className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
+            <TextMotion text="Así construimos cada sistema" preset="wave" decorative />
           </h2>
         </Reveal>
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
@@ -352,8 +312,8 @@ export default function Home() {
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
             Nosotros
           </span>
-          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
-            Quiénes somos
+          <h2 aria-label="Quiénes somos" className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
+            <TextMotion text="Quiénes somos" preset="split" decorative />
           </h2>
           <p className="mt-4 text-[#a29cbd]">
             Somos un equipo enfocado en diseñar software que resuelve problemas reales de
@@ -367,11 +327,12 @@ export default function Home() {
       {/* Contacto */}
       <section
         id="contacto"
-        className="bg-gradient-to-br from-[#433DDD] via-[#7E2AC0] to-[#E2098C] px-6 py-20 text-white"
+        className="relative overflow-hidden bg-gradient-to-br from-[#433DDD] via-[#7E2AC0] to-[#E2098C] px-6 py-20 text-white"
       >
-        <Reveal className="mx-auto max-w-6xl text-center">
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-balance">
-            ¿Tienes un proyecto en mente?
+        <LiquidFluidBackground />
+        <Reveal className="relative z-10 mx-auto max-w-6xl text-center">
+          <h2 aria-label="¿Tienes un proyecto en mente?" className="font-heading text-3xl font-bold tracking-tight text-balance">
+            <TextMotion text="¿Tienes un proyecto en mente?" preset="curtain" decorative />
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-white/80">
             Escríbenos y conversemos sobre qué necesita tu empresa. Tu primer sistema, con 14 días

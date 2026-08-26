@@ -1,10 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { RevealOnScroll } from "@/components/marketing/RevealOnScroll";
+import { motion } from "framer-motion";
+import { Reveal } from "@/components/marketing/Reveal";
+import { TrialBanner } from "@/components/marketing/TrialBanner";
 
 const CONTACT_PHONE = "+1 (904) 579-6156";
 const CONTACT_EMAIL = "contacto@krsystem-corp.com";
 const WHATSAPP_URL = `https://wa.me/${CONTACT_PHONE.replace(/[^+\d]/g, "").replace("+", "")}`;
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 const products = [
   {
@@ -100,15 +106,25 @@ const channels = [
   },
 ];
 
+const heroStagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+};
+
+const heroItem = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
+};
+
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-[#0a0912] text-[#f3f1f9]">
-      <RevealOnScroll />
+      <TrialBanner />
 
       {/* Nav */}
       <header className="sticky top-0 z-20 border-b border-white/10 bg-[#0a0912]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+          <span className="flex items-center gap-2 font-heading text-lg font-semibold tracking-tight">
             <Image src="/logo.png" alt="KR System" width={28} height={30} className="h-7 w-auto" />
             KR{" "}
             <span className="bg-gradient-to-r from-[#433DDD] to-[#E2098C] bg-clip-text text-transparent">
@@ -132,64 +148,72 @@ export default function Home() {
               Contacto
             </a>
           </nav>
-          <a
+          <motion.a
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
             href="#contacto"
-            className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-10px_rgba(226,9,140,0.6)] transition-opacity hover:opacity-90"
+            className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-4 py-2 text-sm font-medium text-white shadow-[0_8px_24px_-10px_rgba(226,9,140,0.6)]"
           >
             Hablemos
-          </a>
+          </motion.a>
         </div>
       </header>
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/10">
-        <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32">
-          <span
-            className="load-in rounded-full border border-white/10 bg-white/5 px-4 py-1 font-mono text-xs uppercase tracking-[0.14em] text-[#c9a6e8]"
-            style={{ animationDelay: "0ms" }}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={heroStagger}
+          className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32"
+        >
+          <motion.span
+            variants={heroItem}
+            className="rounded-full border border-white/10 bg-white/5 px-4 py-1 font-mono text-xs uppercase tracking-[0.14em] text-[#c9a6e8]"
           >
-            Software · Finanzas · Citas · WhatsApp con IA · Automatización
-          </span>
-          <h1
-            className="load-in max-w-3xl text-4xl font-extrabold tracking-tight text-balance sm:text-6xl"
-            style={{ animationDelay: "120ms" }}
+            ✦ 14 días gratis · Software · Finanzas · Citas · WhatsApp con IA
+          </motion.span>
+          <motion.h1
+            variants={heroItem}
+            className="max-w-3xl font-heading text-4xl font-bold tracking-tight text-balance sm:text-6xl"
           >
             Cada problema de tu negocio puede ser un{" "}
             <span className="bg-gradient-to-r from-[#433DDD] via-[#7E2AC0] to-[#E2098C] bg-clip-text text-transparent">
               sistema que lo resuelve.
             </span>
-          </h1>
-          <p
-            className="load-in max-w-2xl text-lg text-[#a29cbd] sm:text-xl"
-            style={{ animationDelay: "240ms" }}
-          >
+          </motion.h1>
+          <motion.p variants={heroItem} className="max-w-2xl text-lg text-[#a29cbd] sm:text-xl">
             Construimos el software detrás de tu operación — ventas, inventario, finanzas o
             citas — partiendo siempre de lo mismo: qué te está costando tiempo o dinero hoy.
-          </p>
-          <div className="load-in mt-4 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "360ms" }}>
-            <a
+          </motion.p>
+          <motion.div variants={heroItem} className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               href="#contacto"
-              className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-6 py-3 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(226,9,140,0.55)] transition-opacity hover:opacity-90"
+              className="rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-6 py-3 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(226,9,140,0.55)]"
             >
               Cuéntanos tu proyecto
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.06)" }}
+              whileTap={{ scale: 0.97 }}
               href="#soluciones"
-              className="rounded-lg border border-white/15 px-6 py-3 text-base font-medium text-[#f3f1f9] transition-colors hover:bg-white/5"
+              className="rounded-lg border border-white/15 px-6 py-3 text-base font-medium text-[#f3f1f9]"
             >
               Ver nuestras soluciones
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Manifiesto */}
       <section className="border-b border-white/10 px-6 py-20">
-        <div className="mx-auto max-w-3xl text-center">
+        <Reveal className="mx-auto max-w-3xl text-center">
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
             Cómo pensamos
           </span>
-          <p className="mt-5 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+          <p className="mt-5 font-heading text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
             Un problema sin resolver no desaparece: se repite cada día hasta que alguien lo
             convierte en sistema.
           </p>
@@ -199,33 +223,34 @@ export default function Home() {
             papel — y construimos el sistema que lo resuelve de raíz. Código propio, datos tuyos,
             y un equipo que sigue construyendo contigo.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Servicios */}
       <section id="servicios" className="mx-auto w-full max-w-6xl px-6 py-20">
-        <div className="reveal mb-12 max-w-2xl">
+        <Reveal className="mb-12 max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
             Servicios
           </span>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
+          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
             Lo que hacemos
           </h2>
           <p className="mt-3 text-[#a29cbd]">
             No vendemos plantillas genéricas — construimos exactamente lo que tu operación
             necesita.
           </p>
-        </div>
+        </Reveal>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
-            <div
-              key={s.title}
-              className="reveal rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-white/20"
-              style={{ transitionDelay: `${i * 60}ms` }}
-            >
-              <h3 className="font-semibold text-white">{s.title}</h3>
-              <p className="mt-2 text-sm text-[#a29cbd]">{s.description}</p>
-            </div>
+            <Reveal key={s.title} delay={i * 0.08}>
+              <motion.div
+                whileHover={{ y: -4, borderColor: "rgba(255,255,255,0.25)" }}
+                className="h-full rounded-xl border border-white/10 bg-white/[0.03] p-6"
+              >
+                <h3 className="font-heading font-semibold text-white">{s.title}</h3>
+                <p className="mt-2 text-sm text-[#a29cbd]">{s.description}</p>
+              </motion.div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -233,65 +258,66 @@ export default function Home() {
       {/* Sistemas Empresariales / productos destacados */}
       <section id="soluciones" className="border-y border-white/10 bg-white/[0.02] py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="reveal mb-10 max-w-2xl">
+          <Reveal className="mb-10 max-w-2xl">
             <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
               Sistemas Empresariales
             </span>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
+            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
               Sistemas ya en uso, listos para adaptarse a tu negocio
             </h2>
-          </div>
+          </Reveal>
           <div className="flex flex-col gap-10">
-            {products.map((p) => (
-              <div
-                key={p.name}
-                className="reveal overflow-hidden rounded-2xl border border-white/10 bg-[#131020]"
-              >
-                <div className="relative border-b border-white/10 bg-[#0a0912] px-6 pt-6 pb-12 sm:px-10 sm:pt-8">
-                  <div className="mx-auto max-w-xl overflow-hidden rounded-lg border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.04] px-3 py-2">
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+            {products.map((p, i) => (
+              <Reveal key={p.name} delay={i * 0.1}>
+                <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#131020]">
+                  <div className="relative border-b border-white/10 bg-[#0a0912] px-6 pt-6 pb-12 sm:px-10 sm:pt-8">
+                    <div className="mx-auto max-w-xl overflow-hidden rounded-lg border border-white/10 shadow-2xl">
+                      <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.04] px-3 py-2">
+                        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      </div>
+                      <Image
+                        src={p.desktopShot}
+                        alt={`${p.name} en computador`}
+                        width={960}
+                        height={600}
+                        className="h-auto w-full"
+                      />
                     </div>
-                    <Image
-                      src={p.desktopShot}
-                      alt={`${p.name} en computador`}
-                      width={960}
-                      height={600}
-                      className="h-auto w-full"
-                    />
+                    <div className="absolute -bottom-6 right-8 w-20 overflow-hidden rounded-2xl border-4 border-[#0a0912] shadow-2xl sm:right-12 sm:w-24">
+                      <Image
+                        src={p.mobileShot}
+                        alt={`${p.name} en móvil`}
+                        width={390}
+                        height={844}
+                        className="h-auto w-full"
+                      />
+                    </div>
                   </div>
-                  <div className="absolute -bottom-6 right-8 w-20 overflow-hidden rounded-2xl border-4 border-[#0a0912] shadow-2xl sm:right-12 sm:w-24">
+                  <div className="flex flex-col items-start gap-8 p-8 sm:flex-row sm:items-center">
                     <Image
-                      src={p.mobileShot}
-                      alt={`${p.name} en móvil`}
-                      width={390}
-                      height={844}
-                      className="h-auto w-full"
+                      src={p.icon}
+                      alt=""
+                      width={56}
+                      height={56}
+                      className="h-14 w-14 shrink-0 rounded-xl"
                     />
+                    <div className="flex-1">
+                      <h3 className="font-heading text-xl font-semibold text-white">{p.name}</h3>
+                      <p className="mt-2 text-[#a29cbd]">{p.description}</p>
+                    </div>
+                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="shrink-0">
+                      <Link
+                        href={p.url}
+                        className="block rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-5 py-2.5 text-sm font-medium text-white"
+                      >
+                        Entrar al sistema →
+                      </Link>
+                    </motion.div>
                   </div>
                 </div>
-                <div className="flex flex-col items-start gap-8 p-8 sm:flex-row sm:items-center">
-                  <Image
-                    src={p.icon}
-                    alt=""
-                    width={56}
-                    height={56}
-                    className="h-14 w-14 shrink-0 rounded-xl"
-                  />
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white">{p.name}</h3>
-                    <p className="mt-2 text-[#a29cbd]">{p.description}</p>
-                  </div>
-                  <Link
-                    href={p.url}
-                    className="shrink-0 rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
-                  >
-                    Entrar al sistema →
-                  </Link>
-                </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -299,41 +325,43 @@ export default function Home() {
 
       {/* Proceso */}
       <section id="proceso" className="mx-auto w-full max-w-6xl px-6 py-20">
-        <div className="reveal mb-12 max-w-2xl">
+        <Reveal className="mb-12 max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
             Proceso
           </span>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">
+          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
             Así construimos cada sistema
           </h2>
-        </div>
+        </Reveal>
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
           {process.map((step, i) => (
-            <div key={step.title} className="reveal bg-[#0a0912] p-7">
-              <span className="font-mono text-3xl font-bold bg-gradient-to-r from-[#433DDD] to-[#E2098C] bg-clip-text text-transparent">
+            <Reveal key={step.title} delay={i * 0.08} className="bg-[#0a0912] p-7">
+              <span className="font-heading text-3xl font-bold bg-gradient-to-r from-[#433DDD] to-[#E2098C] bg-clip-text text-transparent">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-3 font-semibold text-white">{step.title}</h3>
+              <h3 className="mt-3 font-heading font-semibold text-white">{step.title}</h3>
               <p className="mt-2 text-sm text-[#a29cbd]">{step.description}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* Nosotros */}
       <section id="nosotros" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="reveal max-w-2xl">
+        <Reveal className="max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#e2098c]">
             Nosotros
           </span>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance">Quiénes somos</h2>
+          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance">
+            Quiénes somos
+          </h2>
           <p className="mt-4 text-[#a29cbd]">
             Somos un equipo enfocado en diseñar software que resuelve problemas reales de
             pequeñas y medianas empresas. Trabajamos de cerca con cada cliente para entender cómo
             opera su negocio antes de escribir una sola línea de código — el resultado es un
             sistema que se siente hecho a la medida, porque lo está.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Contacto */}
@@ -341,21 +369,24 @@ export default function Home() {
         id="contacto"
         className="bg-gradient-to-br from-[#433DDD] via-[#7E2AC0] to-[#E2098C] px-6 py-20 text-white"
       >
-        <div className="mx-auto max-w-6xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-balance">
+        <Reveal className="mx-auto max-w-6xl text-center">
+          <h2 className="font-heading text-3xl font-bold tracking-tight text-balance">
             ¿Tienes un proyecto en mente?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-white/80">
-            Escríbenos y conversemos sobre qué necesita tu empresa.
+            Escríbenos y conversemos sobre qué necesita tu empresa. Tu primer sistema, con 14 días
+            gratis para probarlo.
           </p>
           <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
             {channels.map((c) => (
-              <a
+              <motion.a
                 key={c.label}
+                whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.15)" }}
+                whileTap={{ scale: 0.97 }}
                 href={c.href}
                 target={c.label === "WhatsApp" ? "_blank" : undefined}
                 rel={c.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-                className="flex flex-col items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-6 transition-colors hover:bg-white/15"
+                className="flex flex-col items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-6"
               >
                 {c.label === "WhatsApp" && (
                   <Image src="/whatsapp-icon.png" alt="" width={22} height={22} className="h-5 w-5" />
@@ -364,10 +395,10 @@ export default function Home() {
                   {c.label}
                 </span>
                 <span className="font-medium">{c.value}</span>
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Footer */}

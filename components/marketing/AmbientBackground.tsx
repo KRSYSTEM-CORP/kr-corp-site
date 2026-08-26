@@ -113,9 +113,12 @@ export function AmbientBackground() {
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <div className="ambient-blob ambient-blob-1" />
-      <div className="ambient-blob ambient-blob-2" />
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-70" />
+      <div className="ambient-field absolute inset-0">
+        <div className="ambient-blob ambient-blob-1" />
+        <div className="ambient-blob ambient-blob-2" />
+        <div className="ambient-blob ambient-blob-3" />
+        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-70" />
+      </div>
     </div>
   );
 }

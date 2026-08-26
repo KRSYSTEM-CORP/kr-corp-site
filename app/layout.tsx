@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, DM_Sans, Geist_Mono } from "next/font/google";
 import { AmbientBackground } from "@/components/marketing/AmbientBackground";
 import { PageIntro } from "@/components/marketing/PageIntro";
+import { MotionProvider } from "@/components/marketing/MotionProvider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// "Tech Startup" pairing — Space Grotesk's distinctive character for
+// headings, DM Sans for readable body copy. Geist Mono stays for the small
+// uppercase eyebrow labels, which already read as a technical accent.
+const heading = Space_Grotesk({
+  variable: "--font-heading",
+  subsets: ["latin"],
+});
+
+const body = DM_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
@@ -28,12 +37,14 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${heading.variable} ${body.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#0a0912] text-[#f3f1f9]">
-        <AmbientBackground />
-        <PageIntro />
-        {children}
+      <body className="min-h-full flex flex-col bg-[#0a0912] text-[#f3f1f9] font-(family-name:--font-body)">
+        <MotionProvider>
+          <AmbientBackground />
+          <PageIntro />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );

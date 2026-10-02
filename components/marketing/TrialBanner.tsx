@@ -15,7 +15,7 @@ export function TrialBanner() {
     >
       <span aria-hidden="true">✦</span>{" "}
       14 días gratis en KR POS y KR Citas — sin tarjeta, sin compromiso.{" "}
-      <a href="#contacto" className="underline underline-offset-2 hover:no-underline">
+      <a href="#contacto" className="inline-block underline underline-offset-2 hover:no-underline pointer-coarse:py-2">
         Empieza hoy →
       </a>
     </motion.div>

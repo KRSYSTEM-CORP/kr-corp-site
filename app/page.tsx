@@ -281,7 +281,7 @@ export default function Home() {
                     <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="shrink-0">
                       <Link
                         href={p.url}
-                        className="block rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-5 py-2.5 text-sm font-medium text-white"
+                        className="block rounded-lg bg-gradient-to-r from-[#433DDD] to-[#E2098C] px-5 py-2.5 pointer-coarse:py-3.5 text-sm font-medium text-white"
                       >
                         Entrar al sistema →
                       </Link>
@@ -376,13 +376,13 @@ export default function Home() {
       {/* Footer */}
       <footer className="flex flex-col items-center gap-3 border-t border-white/10 py-8 text-center text-sm text-[#6b6684]">
         <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
-          <Link href="/privacidad" className="transition-colors hover:text-white">
+          <Link href="/privacidad" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">
             Política de Privacidad
           </Link>
-          <Link href="/terminos" className="transition-colors hover:text-white">
+          <Link href="/terminos" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">
             Términos y Condiciones
           </Link>
-          <Link href="/cookies" className="transition-colors hover:text-white">
+          <Link href="/cookies" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">
             Aviso de Cookies
           </Link>
         </div>

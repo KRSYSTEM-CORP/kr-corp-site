@@ -25,7 +25,7 @@ const DYE_RESOLUTION = 512;
 const DENSITY_DISSIPATION = 1.6;
 const VELOCITY_DISSIPATION = 1.47;
 const PRESSURE = 0.42;
-const PRESSURE_ITERATIONS = 8;
+const PRESSURE_ITERATIONS = 6;
 const CURL = 11;
 const SPLAT_RADIUS = 0.14;
 const SPLAT_FORCE = 6000;
@@ -34,7 +34,7 @@ const BLOOM_RESOLUTION = 256;
 const BLOOM_INTENSITY = 0.47;
 const BLOOM_THRESHOLD = 0.22;
 const BLOOM_SOFT_KNEE = 0.7;
-const SUNRAYS_RESOLUTION = 196;
+const SUNRAYS_RESOLUTION = 128;
 const SUNRAYS_WEIGHT = 0.5;
 const AUTOPLAY_INTERVAL_MS = 3200;
 const AUTOPLAY_COUNT = 4;
@@ -758,9 +758,15 @@ export function LiquidFluidBackground({ className = "" }: { className?: string }
 
     let lastUpdateTime = Date.now();
     let animId = 0;
+    // The sim issues dozens of WebGL calls per frame, so its cost is mostly
+    // CPU-side. Slow, soft smoke looks identical at 30 fps, which halves that
+    // cost; the delta time is allowed up to one 30 fps step so the motion keeps
+    // the same speed it had at 60.
+    const FRAME_INTERVAL_MS = 1000 / 30;
+    let lastFrameTime = 0;
     function calcDeltaTime() {
       const now = Date.now();
-      const dt = Math.min((now - lastUpdateTime) / 1000, 0.016666);
+      const dt = Math.min((now - lastUpdateTime) / 1000, 0.034);
       lastUpdateTime = now;
       return dt;
     }
@@ -772,21 +778,25 @@ export function LiquidFluidBackground({ className = "" }: { className?: string }
         }
       });
     }
-    function update() {
-      if (visible) {
+    function update(time = 0) {
+      if (!visible) {
+        lastUpdateTime = Date.now();
+      } else if (time - lastFrameTime >= FRAME_INTERVAL_MS - 2) {
+        lastFrameTime = time;
         const dt = calcDeltaTime();
         applyInputs();
         step(dt);
         render(null);
-      } else {
-        lastUpdateTime = Date.now();
       }
       animId = requestAnimationFrame(update);
     }
     update();
 
     const resizeCanvas = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // The dye is a soft, blurred glow, so it gains nothing from a retina-sized
+      // canvas — rendering at CSS-pixel resolution cuts the fill cost 4x on 2x
+      // screens (the display pass samples bloom + sunrays for every pixel).
+      const dpr = 1;
       canvas!.width = canvas!.offsetWidth * dpr;
       canvas!.height = canvas!.offsetHeight * dpr;
     };

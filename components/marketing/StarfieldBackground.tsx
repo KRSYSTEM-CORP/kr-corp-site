@@ -30,7 +30,8 @@ export function StarfieldBackground() {
     if (!ctx) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    // 1.5 instead of 2: a full-viewport canvas redrawn every frame; stars stay crisp enough.
+    const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
     let width = 0;
     let height = 0;
     let raf = 0;

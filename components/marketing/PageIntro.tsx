@@ -15,8 +15,10 @@ export function PageIntro() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce || sessionStorage.getItem(SESSION_KEY)) {
-      setPhase("done");
-      return;
+      // Skipped (reduced motion, or already shown this session): dismiss on the
+      // next tick rather than setting state inside the effect body.
+      const skip = setTimeout(() => setPhase("done"), 0);
+      return () => clearTimeout(skip);
     }
     sessionStorage.setItem(SESSION_KEY, "1");
     const t1 = setTimeout(() => setPhase("hold"), 80);

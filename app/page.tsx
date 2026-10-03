@@ -43,8 +43,8 @@ const products = [
     name: "KR POS",
     url: "https://krpos.krsystem-corp.com",
     icon: "/product-finanzas.png",
-    desktopShot: "/screenshot-finanzas-desktop.png",
-    mobileShot: "/screenshot-finanzas-mobile.png",
+    desktopShot: "/screenshot-finanzas-desktop-v2.png",
+    mobileShot: "/screenshot-finanzas-mobile-v2.png",
     description:
       "Punto de venta, inventario, finanzas y facturación en un solo sistema — pensado para pymes que venden en múltiples monedas y necesitan control real de su negocio.",
   },
@@ -146,7 +146,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           variants={heroStagger}
-          className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32"
+          className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 pt-20 pb-24 text-center sm:pt-24 sm:pb-28"
         >
           <motion.span
             variants={heroItem}
@@ -178,6 +178,46 @@ export default function Home() {
               Ver nuestras soluciones
             </motion.a>
           </motion.div>
+
+          {/* The product itself, not a description of it: the real KR POS
+              dashboard (sample data) with the phone version overlapping. */}
+          <motion.figure variants={heroItem} className="relative mt-10 w-full max-w-5xl sm:mt-14">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-x-8 -top-12 bottom-0 -z-10 bg-[radial-gradient(55%_65%_at_50%_35%,rgba(126,42,192,0.38),rgba(226,9,140,0.12)_55%,transparent_75%)]"
+            />
+            <div className="overflow-hidden rounded-xl border border-white/10 bg-[#131020] shadow-[0_40px_120px_-30px_rgba(126,42,192,0.6)]">
+              <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.04] px-3.5 py-2.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="mx-auto hidden rounded-md bg-white/[0.06] px-4 py-0.5 font-mono text-[11px] text-[#a29cbd] sm:block">
+                  krpos.krsystem-corp.com
+                </span>
+              </div>
+              <Image
+                src="/screenshot-finanzas-desktop-v2.png"
+                alt="Panel de Finanzas de KR POS en computador, con ingresos, gastos, ganancia neta y gráficos de ventas"
+                width={1440}
+                height={900}
+                sizes="(min-width: 1024px) 1024px, 100vw"
+                className="h-auto w-full"
+              />
+            </div>
+            <div className="absolute -bottom-8 right-3 w-[24%] max-w-[190px] overflow-hidden rounded-[1.5rem] border-[5px] border-[#0a0912] shadow-[0_24px_60px_-12px_rgba(0,0,0,0.7)] sm:right-10">
+              <Image
+                src="/screenshot-finanzas-mobile-v2.png"
+                alt="KR POS en el teléfono, con la barra de navegación inferior"
+                width={390}
+                height={844}
+                sizes="190px"
+                className="h-auto w-full"
+              />
+            </div>
+            <figcaption className="mt-5 pr-[30%] text-left font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-[#6b6684] sm:pr-0 sm:text-[11px]">
+              KR POS · vista real con datos de ejemplo
+            </figcaption>
+          </motion.figure>
         </motion.div>
       </section>
 

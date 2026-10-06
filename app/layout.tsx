@@ -1,21 +1,12 @@
-import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans, Geist_Mono } from "next/font/google";
-import { AmbientBackground } from "@/components/marketing/AmbientBackground";
-import { StarfieldBackground } from "@/components/marketing/StarfieldBackground";
-import { PageIntro } from "@/components/marketing/PageIntro";
+import type { Metadata, Viewport } from "next";
+import { Inter, Geist_Mono } from "next/font/google";
 import { MotionProvider } from "@/components/marketing/MotionProvider";
 import "./globals.css";
 
-// "Tech Startup" pairing — Space Grotesk's distinctive character for
-// headings, DM Sans for readable body copy. Geist Mono stays for the small
-// uppercase eyebrow labels, which already read as a technical accent.
-const heading = Space_Grotesk({
-  variable: "--font-heading",
-  subsets: ["latin"],
-});
-
-const body = DM_Sans({
-  variable: "--font-body",
+// One family, set tight at large sizes the way Apple sets SF Display: Inter's
+// variable axis covers the whole range from body copy to 100px headlines.
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -24,11 +15,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const TITLE = "KR System — Diseño de apps y sistemas a medida";
+const DESCRIPTION =
+  "Diseñamos y desarrollamos aplicaciones, sistemas y software a medida para pequeñas y medianas empresas.";
+
 export const metadata: Metadata = {
-  title: "KR System — Diseño de apps y sistemas a medida",
-  description:
-    "Diseñamos y desarrollamos aplicaciones, sistemas y software a medida para pequeñas y medianas empresas.",
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "website", locale: "es_VE", siteName: "KR System" },
 };
+
+// Black browser chrome on phones, matching the page's own background.
+export const viewport: Viewport = { themeColor: "#000000" };
 
 export default function RootLayout({
   children,
@@ -38,13 +36,10 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${heading.variable} ${body.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#0a0912] text-[#f3f1f9] font-(family-name:--font-body)">
+      <body className="min-h-full flex flex-col bg-black text-[#f5f5f7] font-sans">
         <MotionProvider>
-          <StarfieldBackground />
-          <AmbientBackground />
-          <PageIntro />
           {children}
         </MotionProvider>
       </body>

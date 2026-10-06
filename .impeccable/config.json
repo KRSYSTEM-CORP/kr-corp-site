@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "components/marketing/HeroStage.tsx"
+        ],
+        "createdAt": "2026-10-06T17:34:04.409Z",
+        "reason": "user approved plan: brand gradient on one headline phrase is the single accent; user said 'adelante con todo'"
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "components/marketing/StaticSections.tsx"
+        ],
+        "createdAt": "2026-10-06T17:35:58.988Z",
+        "reason": "user approved plan: one brand-gradient phrase in the statement section; numerals made solid"
+      }
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+// Base de datos del panel de administrador de KR System
+// (krsystem-corp.com/admin). Independiente de KR POS y KR Citas: de esos
+// sistemas solo se LEE, con conexiones de solo lectura (lib/admin/systems.ts).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum AdminRole {
+  OWNER // todo, incluida la gestión de usuarios
+  STAFF // todo menos usuarios
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         AdminRole @default(STAFF)
+  active       Boolean   @default(true)
+  // Se incrementa al cambiar la contraseña o desactivar: invalida sesiones.
+  tokenVersion Int       @default(0)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+}
+
+enum ContactStatus {
+  SUBSCRIBED
+  UNSUBSCRIBED
+  BOUNCED
+}
+
+model Contact {
+  id               String        @id @default(cuid())
+  email            String        @unique
+  name             String?
+  phone            String?
+  company          String?
+  city             String?
+  // Etiquetas libres para segmentar: "kr-pos", "kr-citas", "prospecto", ...
+  tags             String[]      @default([])
+  source           String?       // "manual", "excel", "kr-pos", "kr-citas", "web"
+  status           ContactStatus @default(SUBSCRIBED)
+  unsubscribeToken String        @unique @default(cuid())
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  recipients       CampaignRecipient[]
+
+  @@index([status])
+}
+
+enum CampaignStatus {
+  DRAFT
+  SENDING
+  SENT
+}
+
+model Campaign {
+  id          String         @id @default(cuid())
+  name        String
+  subject     String
+  html        String
+  // Segmento: contactos con TODAS estas etiquetas (vacío = todos los suscritos).
+  tags        String[]       @default([])
+  status      CampaignStatus @default(DRAFT)
+  createdById String?
+  createdAt   DateTime       @default(now())
+  sentAt      DateTime?
+  recipients  CampaignRecipient[]
+}
+
+model CampaignRecipient {
+  id                String    @id @default(cuid())
+  campaignId        String
+  campaign          Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  contactId         String
+  contact           Contact   @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  mailgunMessageId  String?
+  sentAt            DateTime?
+  deliveredAt       DateTime?
+  openedAt          DateTime?
+  clickedAt         DateTime?
+  failedAt          DateTime?
+  error             String?
+
+  @@unique([campaignId, contactId])
+  @@index([mailgunMessageId])
+}
+
+// Visitas y clics de la web pública, para las estadísticas del panel.
+model WebEvent {
+  id        String   @id @default(cuid())
+  type      String   // "visit", "cta", "contact"
+  path      String?
+  referrer  String?
+  utmSource String?
+  createdAt DateTime @default(now())
+
+  @@index([type, createdAt])
+}

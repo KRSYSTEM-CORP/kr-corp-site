@@ -40,27 +40,3 @@ section[id] {
     scroll-behavior: auto;
   }
 }
-
-/* Panel de administración: tema claro (mismo estilo que el panel de Laboratorio
-   Planet). Se remapea la escala zinc solo dentro del panel; la web pública y el
-   login no cambian. */
-.admin-shell {
-  --color-zinc-950: #f6f3ef;
-  --color-zinc-900: #ffffff;
-  --color-zinc-800: #e4ded6;
-  --color-zinc-700: #cfc7bd;
-  --color-zinc-600: #b9b0a5;
-  --color-zinc-500: #8a8178;
-  --color-zinc-400: #6b625b;
-  --color-zinc-300: #4a423c;
-  --color-zinc-200: #2d2723;
-  --color-zinc-100: #201c1a;
-  --color-white: #201c1a;
-  --color-black: #ffffff;
-  --color-emerald-300: #15803d;
-  --color-emerald-400: #15803d;
-  --color-sky-300: #0369a1;
-  --color-amber-300: #b45309;
-  --color-red-300: #b91c1c;
-  --color-red-400: #b91c1c;
-}

@@ -18,6 +18,21 @@ export function personalize(html: string): string {
   return html.replace(/\{\{\s*nombre\s*\}\}/gi, "%recipient.name%");
 }
 
+const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+// Plain message → simple, readable HTML email (paragraphs, optional flyer on top).
+export function messageToHtml(text: string, flyer: boolean): string {
+  const body = text
+    .trim()
+    .split(/\n{2,}/)
+    .map((p) => `<p style="margin:0 0 16px">${esc(p).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+  const img = flyer ? `<p style="margin:0 0 20px"><img src="cid:flyer" alt="" style="max-width:100%;height:auto;border-radius:8px"></p>` : "";
+  return `<div style="max-width:600px;margin:0 auto;padding:24px;font:16px/1.55 Arial,sans-serif;color:#201c1a">${img}${body}</div>`;
+}
+
+export type Flyer = { data: Uint8Array; type: string };
+
 export function withFooter(html: string): string {
   return (
     personalize(html) +
@@ -33,12 +48,13 @@ export async function sendBatch(opts: {
   html: string;
   campaignId: string;
   recipients: Recipient[];
+  flyer?: Flyer;
 }): Promise<string> {
   const base = process.env.MAILGUN_REGION === "eu" ? "https://api.eu.mailgun.net" : "https://api.mailgun.net";
   const vars: Record<string, { name: string; unsub: string }> = {};
   for (const r of opts.recipients) vars[r.email] = { name: r.name ?? "", unsub: r.unsubscribeUrl };
 
-  const form = new URLSearchParams();
+  const form = new FormData();
   form.set("from", process.env.MAILGUN_FROM!);
   for (const r of opts.recipients) form.append("to", r.email);
   form.set("subject", opts.subject);
@@ -50,6 +66,7 @@ export async function sendBatch(opts: {
   form.set("v:campaign_id", opts.campaignId);
   form.set("h:List-Unsubscribe", "<%recipient.unsub%>");
   form.set("h:List-Unsubscribe-Post", "List-Unsubscribe=One-Click");
+  if (opts.flyer) form.append("inline", new Blob([opts.flyer.data as BlobPart], { type: opts.flyer.type }), "flyer");
 
   const res = await fetch(`${base}/v3/${process.env.MAILGUN_DOMAIN}/messages`, {
     method: "POST",

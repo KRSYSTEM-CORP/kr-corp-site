@@ -367,6 +367,9 @@ export function Footer() {
         <Link href="/cookies" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">
           Aviso de Cookies
         </Link>
+        <Link href="/admin" rel="nofollow" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">
+          Acceso del equipo
+        </Link>
       </div>
       <p>© {new Date().getFullYear()} KR System. Todos los derechos reservados.</p>
     </footer>

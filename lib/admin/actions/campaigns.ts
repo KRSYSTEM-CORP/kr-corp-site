@@ -91,7 +91,7 @@ const FLYER_TYPES = ["image/png", "image/jpeg", "image/webp"];
 // Compose + send in one step (same flow as the Laboratorio Planet panel).
 export async function sendMassMail(_prev: FormState, formData: FormData): Promise<FormState> {
   const admin = await requireAdmin();
-  if (!mailgunConfigured()) return { error: "Mailgun aún no está configurado en Vercel (MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_FROM)." };
+  if (!mailgunConfigured()) return { error: "Mailgun aún no está configurado en Vercel (MAILGUN_API_KEY y MAILGUN_DOMAIN)." };
   const parsed = Mass.safeParse({ subject: formData.get("subject"), message: formData.get("message") });
   if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "Datos inválidos" };
 

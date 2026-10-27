@@ -2,11 +2,16 @@ import "server-only";
 import { createHmac, timingSafeEqual } from "crypto";
 
 // Thin Mailgun client. Config comes from env only:
-//   MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_FROM, MAILGUN_REGION (us|eu),
+//   MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_REGION (us|eu),
 //   MAILGUN_WEBHOOK_SIGNING_KEY (for the stats webhook).
 
+// Every message leaves as contacto@ (replies land there too), signed by the
+// mg. sending domain; the From domain aligns with it for DMARC.
+export const MAIL_FROM = "KR System <contacto@krsystem-corp.com>";
+export const MAIL_REPLY_TO = "contacto@krsystem-corp.com";
+
 export function mailgunConfigured(): boolean {
-  return !!(process.env.MAILGUN_API_KEY && process.env.MAILGUN_DOMAIN && process.env.MAILGUN_FROM);
+  return !!(process.env.MAILGUN_API_KEY && process.env.MAILGUN_DOMAIN);
 }
 
 export type Recipient = { email: string; name: string | null; unsubscribeUrl: string };
@@ -55,7 +60,8 @@ export async function sendBatch(opts: {
   for (const r of opts.recipients) vars[r.email] = { name: r.name ?? "", unsub: r.unsubscribeUrl };
 
   const form = new FormData();
-  form.set("from", process.env.MAILGUN_FROM!);
+  form.set("from", MAIL_FROM);
+  form.set("h:Reply-To", MAIL_REPLY_TO);
   for (const r of opts.recipients) form.append("to", r.email);
   form.set("subject", opts.subject);
   form.set("html", withFooter(opts.html));

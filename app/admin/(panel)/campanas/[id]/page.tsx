@@ -40,7 +40,7 @@ export default async function CampaignPage({ params }: { params: Promise<{ id: s
             Se enviará a <strong>{audience}</strong> contactos suscritos.
             {audience > 3000 && <span className="text-red-300"> Máximo 3000 por envío: usa etiquetas para dividir.</span>}
           </p>
-          {!configured && <p className="text-sm text-amber-300">Mailgun aún no está configurado en Vercel (MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_FROM).</p>}
+          {!configured && <p className="text-sm text-amber-300">Mailgun aún no está configurado en Vercel (MAILGUN_API_KEY y MAILGUN_DOMAIN).</p>}
           <div className="flex flex-wrap gap-3">
             <form action={sendTest.bind(null, c.id)}>
               <button disabled={!configured} className="h-10 rounded-lg border border-zinc-600 px-4 text-sm disabled:opacity-50">Enviarme una prueba</button>

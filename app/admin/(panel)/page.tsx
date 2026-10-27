@@ -1,4 +1,5 @@
 import { db } from "@/lib/admin/prisma";
+import { loadSystems, usd } from "@/lib/admin/systems";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +23,12 @@ async function loadStats() {
 }
 
 export default async function AdminHome() {
-  const [subscribed, totalContacts, campaigns, visits] = await loadStats();
+  const [[subscribed, totalContacts, campaigns, visits], systems] = await Promise.all([loadStats(), loadSystems()]);
+  const ok = systems.flatMap((s) => (s.status === "ok" ? [s.data] : []));
+  const companies = ok.reduce((n, d) => n + d.accounts.length, 0);
+  const overdue = ok.reduce((n, d) => n + d.accounts.filter((a) => a.state === "overdue").length, 0);
+  const month = ok.reduce((n, d) => n + d.revenueMonthUsdCents, 0);
+  const mrr = ok.reduce((n, d) => n + d.mrrUsdCents, 0);
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-2xl font-semibold">Resumen</h1>
@@ -32,10 +38,12 @@ export default async function AdminHome() {
         <Stat label="Campañas enviadas" value={campaigns} />
         <Stat label="Visitas a la web (30 días)" value={visits} />
       </div>
-      <p className="text-sm text-zinc-400">
-        Las cifras de Finanzas (empresas inscritas, ingresos y vencimientos) aparecen aquí cuando se conecten
-        KR POS y KR Citas.
-      </p>
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <Stat label="Empresas inscritas" value={companies} />
+        <Stat label="Vencidas" value={overdue} />
+        <Stat label="Cobrado este mes" value={usd(month)} />
+        <Stat label="Ingreso mensual recurrente" value={usd(mrr)} />
+      </div>
     </div>
   );
 }

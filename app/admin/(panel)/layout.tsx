@@ -16,7 +16,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   const admin = await requireAdmin();
   const nav = admin.role === "OWNER" ? [...NAV, { href: "/admin/usuarios", label: "Usuarios" }] : NAV;
   return (
-    <div className="admin-shell min-h-dvh bg-zinc-950 text-zinc-100">
+    <div className="min-h-dvh bg-zinc-950 text-zinc-100">
       <div className="mx-auto grid w-[min(1240px,100%-32px)] grid-cols-[minmax(0,1fr)] gap-6 py-6 pb-16 md:grid-cols-[230px_minmax(0,1fr)]">
         <aside className="flex min-w-0 flex-wrap items-center gap-1 self-start rounded-2xl border border-zinc-800 bg-zinc-900 p-3 md:sticky md:top-3 md:block">
           <div className="w-full px-3 pb-2 pt-1">

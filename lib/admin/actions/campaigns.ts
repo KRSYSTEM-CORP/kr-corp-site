@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import { db } from "@/lib/admin/prisma";
 import { requireAdmin } from "@/lib/admin/session";
-import { parseTags } from "@/lib/admin/actions/contacts";
+import { parseTags } from "@/lib/admin/tags";
 import { BATCH_SIZE, mailgunConfigured, sendBatch } from "@/lib/admin/mailgun";
 import { unsubscribeUrl } from "@/lib/admin/unsubscribe";
 import type { FormState } from "@/lib/admin/actions/users";

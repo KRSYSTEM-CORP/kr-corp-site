@@ -4,14 +4,11 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "@/lib/admin/prisma";
 import { requireAdmin } from "@/lib/admin/session";
+import { parseTags } from "@/lib/admin/tags";
 import type { FormState } from "@/lib/admin/actions/users";
 
 const MAX_IMPORT = 5000;
 const Email = z.string().trim().toLowerCase().email().max(254);
-
-export function parseTags(raw: string): string[] {
-  return [...new Set(raw.split(/[,;]/).map((t) => t.trim().toLowerCase()).filter(Boolean))].slice(0, 20);
-}
 
 export async function importContacts(_prev: FormState, formData: FormData): Promise<FormState> {
   await requireAdmin();

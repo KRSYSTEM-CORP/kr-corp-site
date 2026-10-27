@@ -13,7 +13,7 @@ const NewUser = z.object({
   role: z.enum(["OWNER", "STAFF"]),
 });
 
-export type FormState = { error: string | null; ok?: boolean };
+export type FormState = { error: string | null; ok?: boolean; message?: string };
 
 export async function createAdminUser(_prev: FormState, formData: FormData): Promise<FormState> {
   await requireOwner();

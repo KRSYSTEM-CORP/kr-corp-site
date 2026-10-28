@@ -258,6 +258,87 @@ export function Systems() {
   );
 }
 
+/* ─────────────────────────── Desarrollo web para salud ─────────────────────────── */
+
+const HEALTH_FEATURES = [
+  {
+    title: "Resultados en línea",
+    description: "El paciente consulta y descarga sus resultados desde la web con su cédula u orden, sin esperar en el mostrador ni pedirlos por WhatsApp.",
+  },
+  {
+    title: "Estudios de imagen",
+    description: "Rayos X y otros estudios entregados por nombre y fecha, con descarga por imagen o en un solo archivo.",
+  },
+  {
+    title: "Conectado a tu operación",
+    description: "El portal lee los resultados que tu laboratorio ya digitaliza, sin cambiar cómo trabaja tu equipo.",
+  },
+  {
+    title: "Web pública completa",
+    description: "Servicios, horarios, ofertas y novedades, siempre actualizables por tu equipo desde un panel propio.",
+  },
+  {
+    title: "Correos a tus pacientes y empresas",
+    description: "Base de datos de correos, envíos masivos con tu imagen o promoción, y enlace de baja en cada mensaje.",
+  },
+  {
+    title: "Protegido contra abuso",
+    description: "Verificación contra bots en el portal y un panel de administración con clave, para que solo entre quien debe.",
+  },
+];
+
+export function Health() {
+  return (
+    <section id="desarrollo-web" className="border-t border-white/10 bg-black px-5 py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl">
+        <Reveal>
+          <p className="text-base font-semibold text-[#c9a6e8]">Desarrollo web</p>
+          <h2 className="mt-2 max-w-4xl text-balance text-[clamp(2.25rem,6vw,4.25rem)] font-bold leading-[1.05] tracking-[-0.04em]">
+            Desarrollo Web para <span className={GRAD_TEXT}>Laboratorios Clínicos y Centros Médicos.</span>
+          </h2>
+          <p className="mt-4 max-w-2xl text-xl text-[#a1a1a6]">
+            Diseñamos la página web de tu laboratorio o centro médico y la conectamos con la automatización que más
+            tiempo le ahorra a tu personal: que el paciente reciba sus resultados y estudios sin hacer fila ni llamar.
+          </p>
+        </Reveal>
+        <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {HEALTH_FEATURES.map((f, i) => (
+            <Reveal key={f.title} delay={i * 0.05} className="border-t border-white/15 pt-6">
+              <h3 className="text-2xl font-semibold tracking-tight">{f.title}</h3>
+              <p className="mt-2 text-lg leading-snug text-[#a1a1a6]">{f.description}</p>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal className="mt-14 flex flex-col items-start gap-5 rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.12em] text-[#a1a1a6]">Caso real</p>
+            <h3 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Laboratorio Clínico Planet</h3>
+            <p className="mt-2 max-w-xl text-lg leading-snug text-[#a1a1a6]">
+              Su página web, su portal de resultados y su envío de correos fueron desarrollados por KR System.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="https://laboratorioplanet.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full bg-white px-6 py-2.5 text-base font-medium text-black transition-transform duration-150 ease-out active:scale-[0.97] pointer-coarse:py-3.5"
+            >
+              Ver la página <span aria-hidden="true" className="ml-1">→</span>
+            </a>
+            <a
+              href="#contacto"
+              className="inline-flex items-center rounded-full border border-white/30 px-6 py-2.5 text-base font-medium transition-colors hover:bg-white/10 pointer-coarse:py-3.5"
+            >
+              Quiero una para mi centro
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ───────────────────────────────── Proceso ───────────────────────────────── */
 
 const PROCESS = [

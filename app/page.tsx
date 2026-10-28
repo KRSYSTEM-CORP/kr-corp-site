@@ -1,9 +1,8 @@
 import { SiteNavbar } from "@/components/marketing/SiteNavbar";
 import { Hero } from "@/components/marketing/HeroStage";
-import { ChapterStory } from "@/components/marketing/ChapterStory";
 import {
   Contact,
-  FeatureBento,
+  KrPosOverview,
   Footer,
   Health,
   Process,
@@ -18,12 +17,11 @@ export default function Home() {
       <SiteNavbar />
       <main>
         <Hero />
-        <ChapterStory />
-        <FeatureBento />
+        <Health />
+        <KrPosOverview />
         <Statement />
         <WhatWeDo />
         <Systems />
-        <Health />
         <Process />
         <Contact />
       </main>

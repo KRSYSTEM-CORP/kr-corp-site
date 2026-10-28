@@ -29,133 +29,66 @@ export function Statement() {
   );
 }
 
-/* ─────────────────────────── Cuadrícula de funciones ─────────────────────────── */
+/* ───────────────────────────── KR POS (pantalla única) ───────────────────────────── */
 
-function Pill({ children, tone = "light" }: { children: React.ReactNode; tone?: "light" | "dark" | "warn" | "ok" }) {
-  const tones = {
-    light: "bg-white/15 text-white border-white/25",
-    dark: "bg-[#f2f2f7] text-[#1d1d1f] border-[#e3e3e8]",
-    warn: "bg-[#fdf1dc] text-[#9a5b00] border-[#f3dcae]",
-    ok: "bg-[#e3f6ea] text-[#1d7a45] border-[#c5ebd2]",
-  };
-  return <span className={`rounded-full border px-3.5 py-1.5 text-sm font-semibold ${tones[tone]}`}>{children}</span>;
-}
+const POS_FEATURES = [
+  { title: "Punto de venta que no se detiene", description: "Cobra desde el teléfono o la computadora. Si se cae el internet sigues vendiendo y todo se sincroniza solo." },
+  { title: "Bs. · € · $", description: "Cobra y reporta en varias monedas con la tasa del día." },
+  { title: "Cierre de caja sin sorpresas", description: "Cada día cuadra, con su historial y su PDF." },
+  { title: "Inventario al día", description: "Alertas de stock bajo y compras a proveedores que suman stock solas." },
+  { title: "Cuentas por cobrar", description: "Quién te debe, desde cuándo y cuánto. Registra abonos en segundos." },
+  { title: "Hecho a tu medida", description: "No es una plantilla: lo ajustamos a cómo opera tu negocio." },
+];
 
-function Tile({
-  className = "",
-  tone = "light",
-  title,
-  children,
-  delay = 0,
-}: {
-  className?: string;
-  tone?: "light" | "dark" | "brand";
-  title: React.ReactNode;
-  children: React.ReactNode;
-  delay?: number;
-}) {
-  const tones = {
-    light: "bg-white text-[#1d1d1f]",
-    dark: "bg-[#0b0b0f] text-white",
-    brand: "bg-gradient-to-br from-[#433DDD] via-[#7E2AC0] to-[#E2098C] text-white",
-  };
+export function KrPosOverview() {
   return (
-    <Reveal delay={delay} className={`relative overflow-hidden rounded-[2rem] p-8 sm:p-9 ${tones[tone]} ${className}`}>
-      <h3 className="text-balance text-[1.7rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[2rem]">{title}</h3>
-      {children}
-    </Reveal>
-  );
-}
-
-export function FeatureBento() {
-  return (
-    <section id="funciones" className="bg-[#f5f5f7] px-5 py-24 text-[#1d1d1f] sm:py-32">
+    <section id="soluciones" aria-label="Qué hace KR POS" className="bg-[#0a0a0d] px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal className="text-center">
-          <h2 className="text-balance text-[clamp(2.25rem,6vw,4.75rem)] font-bold leading-[1.04] tracking-[-0.04em]">
-            Todo lo que tu negocio necesita.
-            <br />
-            Nada que no.
+          <p className="text-base font-semibold text-[#c9a6e8]">KR POS</p>
+          <h2 className="mx-auto mt-2 max-w-4xl text-balance text-[clamp(2.25rem,6vw,4.5rem)] font-bold leading-[1.05] tracking-[-0.04em]">
+            Todo tu negocio en una sola pantalla. <span className={GRAD_TEXT}>Nada que no necesites.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-xl text-[#6e6e73] sm:text-2xl">
-            Un solo sistema, en cualquier pantalla y en las monedas que usas.
+          <p className="mx-auto mt-5 max-w-2xl text-xl text-[#a1a1a6] sm:text-2xl">
+            Ingresos, gastos y ganancia al día, en bolívares, euros y dólares, desde la computadora o el teléfono.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:mt-16 lg:grid-cols-12 lg:auto-rows-[300px]">
-          <Tile tone="dark" className="lg:col-span-7 lg:row-span-2" title="Punto de venta que no se detiene.">
-            <p className="mt-3 max-w-md text-lg leading-snug text-[#a1a1a6]">
-              Cobra desde el teléfono o la computadora. Si se cae el internet, sigues vendiendo y todo se sincroniza solo
-              al volver.
-            </p>
-            {/* Illustrative cart, not live data */}
-            <div
-              aria-hidden="true"
-              className="mx-auto mt-8 w-full max-w-sm rounded-3xl border border-white/10 bg-white/[0.06] p-5 backdrop-blur lg:absolute lg:bottom-8 lg:right-8 lg:mt-0 lg:w-[330px]"
-            >
-              <div className="flex items-center justify-between text-sm text-[#a1a1a6]">
-                <span>Carrito</span>
-                <span>3 artículos</span>
-              </div>
-              <div className="mt-3 space-y-2 text-white">
-                {["Playera básica", "Gorra ajustable", "Calcetines (par)"].map((n) => (
-                  <div key={n} className="flex items-center justify-between rounded-xl bg-white/[0.07] px-3 py-2 text-sm">
-                    <span>{n}</span>
-                    <span className="tabular-nums text-[#a1a1a6]">× 1</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 rounded-full bg-gradient-to-r from-[#4f46e5] to-[#9333ea] py-2.5 text-center text-base font-semibold text-white">
-                Completar venta
-              </div>
+        <Reveal className="relative mx-auto mt-14 max-w-4xl">
+          <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#131020] shadow-[0_50px_140px_rgba(67,61,221,0.35)]">
+            <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.05] px-3.5 py-2.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+              <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+              <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
             </div>
-          </Tile>
+            <Image
+              src="/screenshot-finanzas-desktop-v2.png"
+              alt="Panel de Finanzas de KR POS con ingresos, gastos, ganancia neta y gráficos"
+              width={1440}
+              height={900}
+              sizes="(min-width: 1024px) 896px, 100vw"
+              className="h-auto w-full"
+            />
+          </div>
+          <div className="absolute -bottom-8 right-2 w-[24%] min-w-[96px] overflow-hidden rounded-[1.4rem] border-[5px] border-black shadow-[0_30px_80px_rgba(67,61,221,0.45)] sm:right-6">
+            <Image
+              src="/screenshot-finanzas-mobile-v2.png"
+              alt="Panel de Finanzas de KR POS en el teléfono"
+              width={390}
+              height={844}
+              sizes="220px"
+              className="h-auto w-full"
+            />
+          </div>
+        </Reveal>
 
-          <Tile tone="brand" className="lg:col-span-5" title="Bs. · € · $" delay={0.05}>
-            <p className="mt-3 max-w-xs text-lg leading-snug text-white/85">
-              Cobra y reporta en varias monedas con la tasa del día.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2.5">
-              <Pill>Bolívares</Pill>
-              <Pill>Euros</Pill>
-              <Pill>Dólares</Pill>
-            </div>
-          </Tile>
-
-          <Tile className="lg:col-span-5" title="Cierre de caja sin sorpresas." delay={0.1}>
-            <p className="mt-3 max-w-xs text-lg leading-snug text-[#6e6e73]">Cada día cuadra, con su historial y su PDF.</p>
-            <div className="mt-6 flex flex-wrap gap-2.5">
-              <Pill tone="ok">Efectivo ✓</Pill>
-              <Pill tone="ok">Transferencia ✓</Pill>
-              <Pill tone="ok">Punto de venta ✓</Pill>
-            </div>
-          </Tile>
-
-          <Tile className="lg:col-span-4" title="Inventario al día." delay={0.05}>
-            <p className="mt-3 max-w-xs text-lg leading-snug text-[#6e6e73]">
-              Alertas de stock bajo y compras a proveedores que suman stock solas.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2.5">
-              <Pill tone="ok">En stock</Pill>
-              <Pill tone="warn">Stock bajo</Pill>
-            </div>
-          </Tile>
-
-          <Tile className="lg:col-span-4" title="Cuentas por cobrar." delay={0.1}>
-            <p className="mt-3 max-w-xs text-lg leading-snug text-[#6e6e73]">
-              Quién te debe, desde cuándo y cuánto. Registra abonos en segundos.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2.5">
-              <Pill tone="warn">A crédito</Pill>
-              <Pill tone="dark">Abono parcial</Pill>
-            </div>
-          </Tile>
-
-          <Tile tone="dark" className="lg:col-span-4" title="Hecho a tu medida." delay={0.15}>
-            <p className="mt-3 max-w-xs text-lg leading-snug text-[#a1a1a6]">
-              No es una plantilla: lo ajustamos a cómo opera tu negocio.
-            </p>
-          </Tile>
+        <div className="mt-24 grid gap-x-12 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+          {POS_FEATURES.map((f, i) => (
+            <Reveal key={f.title} delay={i * 0.05} className="border-t border-white/15 pt-5">
+              <h3 className="text-xl font-semibold tracking-tight">{f.title}</h3>
+              <p className="mt-2 text-lg leading-snug text-[#a1a1a6]">{f.description}</p>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

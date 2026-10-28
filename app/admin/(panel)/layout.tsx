@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { requireAdmin } from "@/lib/admin/session";
 import { logout } from "@/lib/admin/actions/auth";
 import { PanelNav } from "./PanelNav";
@@ -24,6 +25,9 @@ export default async function PanelLayout({ children }: { children: React.ReactN
             <p className="truncate text-xs text-zinc-400">{admin.name}</p>
           </div>
           <PanelNav items={nav} />
+          <Link href="/" className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-medium text-zinc-300 hover:bg-zinc-800 md:mt-3 md:border-t md:border-zinc-800 md:rounded-t-none md:pt-2">
+            <span aria-hidden="true">←</span> Volver a la página web
+          </Link>
           <form action={logout} className="md:mt-3">
             <button type="submit" className="flex min-h-11 w-full items-center rounded-xl px-3 text-left font-medium text-zinc-400 hover:bg-zinc-950">
               Salir

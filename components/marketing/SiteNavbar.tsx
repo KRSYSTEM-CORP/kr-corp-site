@@ -8,9 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
 // scrolls underneath, and gives way to a plain dark bar when the visitor asks
 // for reduced transparency.
 const LINKS = [
-  { href: "#soluciones", label: "Soluciones" },
-  { href: "#sistemas", label: "Sistemas" },
   { href: "#desarrollo-web", label: "Desarrollo web" },
+  { href: "#soluciones", label: "KR POS" },
+  { href: "#sistemas", label: "Sistemas" },
   { href: "#proceso", label: "Proceso" },
   { href: "#nosotros", label: "Nosotros" },
   { href: "#contacto", label: "Contacto" },

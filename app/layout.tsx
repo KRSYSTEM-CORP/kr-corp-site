@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
+import { Analytics } from "@/components/marketing/Analytics";
 import { MotionProvider } from "@/components/marketing/MotionProvider";
 import "./globals.css";
 
@@ -42,6 +43,7 @@ export default function RootLayout({
         <MotionProvider>
           {children}
         </MotionProvider>
+        <Analytics />
       </body>
     </html>
   );

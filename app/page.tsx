@@ -5,6 +5,7 @@ import {
   Contact,
   FeatureBento,
   Footer,
+  Health,
   Process,
   Statement,
   Systems,
@@ -22,6 +23,7 @@ export default function Home() {
         <Statement />
         <WhatWeDo />
         <Systems />
+        <Health />
         <Process />
         <Contact />
       </main>

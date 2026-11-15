@@ -1,10 +1,8 @@
+import { ContactForm } from "@/components/marketing/ContactForm";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/marketing/Reveal";
 
-const CONTACT_PHONE = "+1 (904) 579-6156";
-const CONTACT_EMAIL = "contacto@krsystem-corp.com"; // llega a soportekrpos@gmail.com (Cloudflare Email Routing)
-const WHATSAPP_URL = `https://wa.me/${CONTACT_PHONE.replace(/[^+\d]/g, "").replace("+", "")}`;
 
 const GRAD_TEXT = "bg-gradient-to-r from-[#6c6bff] via-[#b44cf0] to-[#ff3da0] bg-clip-text text-transparent";
 
@@ -243,12 +241,6 @@ export function Process() {
 
 /* ───────────────────────────── Contacto + pie ───────────────────────────── */
 
-const CHANNELS = [
-  { label: "WhatsApp", value: CONTACT_PHONE, href: WHATSAPP_URL, external: true },
-  { label: "Correo", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}`, external: false },
-  { label: "Teléfono", value: CONTACT_PHONE, href: `tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`, external: false },
-];
-
 export function Contact() {
   return (
     <section
@@ -266,24 +258,9 @@ export function Contact() {
           Cuéntanos qué necesita tu empresa: un sistema a la medida, tu página web corporativa o KR POS para tu negocio.
         </p>
       </Reveal>
-      <div className="mx-auto mt-14 grid max-w-4xl gap-4 sm:grid-cols-3">
-        {CHANNELS.map((c, i) => (
-          <Reveal key={c.label} delay={i * 0.06}>
-            <a
-              href={c.href}
-              target={c.external ? "_blank" : undefined}
-              rel={c.external ? "noopener noreferrer" : undefined}
-              className="flex h-full flex-col items-center justify-center gap-2 rounded-3xl border border-white/30 bg-white/[0.13] px-5 py-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-xl transition-transform duration-150 ease-out hover:bg-white/[0.18] active:scale-[0.98] [@media(prefers-reduced-transparency:reduce)]:bg-[#3a2a7a] [@media(prefers-reduced-transparency:reduce)]:backdrop-blur-none"
-            >
-              {c.label === "WhatsApp" && (
-                <Image src="/whatsapp-icon.png" alt="" width={22} height={22} className="h-5 w-5" />
-              )}
-              <span className="font-mono text-xs uppercase tracking-[0.12em] text-white/70">{c.label}</span>
-              <span className="break-all text-lg font-semibold tracking-tight">{c.value}</span>
-            </a>
-          </Reveal>
-        ))}
-      </div>
+      <Reveal delay={0.1} className="mx-auto mt-12 max-w-xl">
+        <ContactForm />
+      </Reveal>
     </section>
   );
 }

@@ -1,18 +1,28 @@
+import { ContactForm } from "@/components/marketing/ContactForm";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/marketing/Reveal";
 
-const CONTACT_PHONE = "+1 (904) 579-6156";
-const CONTACT_EMAIL = "contacto@krsystem-corp.com";
-const WHATSAPP_URL = `https://wa.me/${CONTACT_PHONE.replace(/[^+\d]/g, "").replace("+", "")}`;
 
 const GRAD_TEXT = "bg-gradient-to-r from-[#6c6bff] via-[#b44cf0] to-[#ff3da0] bg-clip-text text-transparent";
 
 /* ───────────────────────────── Afirmación ───────────────────────────── */
 
+export function PageHeader({ eyebrow, title, text }: { eyebrow: string; title: React.ReactNode; text: string }) {
+  return (
+    <section className="px-5 pb-6 pt-20 sm:pt-28">
+      <Reveal className="mx-auto max-w-6xl">
+        <p className="text-base font-semibold text-[#c9a6e8]">{eyebrow}</p>
+        <h1 className="mt-2 max-w-4xl text-balance text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[1.03] tracking-[-0.045em]">{title}</h1>
+        <p className="mt-5 max-w-2xl text-xl text-[#a1a1a6]">{text}</p>
+      </Reveal>
+    </section>
+  );
+}
+
 export function Statement() {
   return (
-    <section id="nosotros" className="bg-black px-5 py-28 sm:py-40">
+    <section id="nosotros" className="px-5 py-20 sm:py-28">
       <Reveal className="mx-auto max-w-4xl text-center">
         <p className="text-base font-semibold text-[#c9a6e8]">Cómo pensamos</p>
         <p className="mt-4 text-balance text-[clamp(1.9rem,5vw,3.6rem)] font-bold leading-[1.08] tracking-[-0.035em]">
@@ -25,72 +35,6 @@ export function Statement() {
           resuelve de raíz. Código propio, datos tuyos, y un equipo que sigue construyendo contigo.
         </p>
       </Reveal>
-    </section>
-  );
-}
-
-/* ───────────────────────────── KR POS (pantalla única) ───────────────────────────── */
-
-const POS_FEATURES = [
-  { title: "Punto de venta que no se detiene", description: "Cobra desde el teléfono o la computadora. Si se cae el internet sigues vendiendo y todo se sincroniza solo." },
-  { title: "Bs. · € · $", description: "Cobra y reporta en varias monedas con la tasa del día." },
-  { title: "Cierre de caja sin sorpresas", description: "Cada día cuadra, con su historial y su PDF." },
-  { title: "Inventario al día", description: "Alertas de stock bajo y compras a proveedores que suman stock solas." },
-  { title: "Cuentas por cobrar", description: "Quién te debe, desde cuándo y cuánto. Registra abonos en segundos." },
-  { title: "Hecho a tu medida", description: "No es una plantilla: lo ajustamos a cómo opera tu negocio." },
-];
-
-export function KrPosOverview() {
-  return (
-    <section id="soluciones" aria-label="Qué hace KR POS" className="bg-[#0a0a0d] px-5 py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl">
-        <Reveal className="text-center">
-          <p className="text-base font-semibold text-[#c9a6e8]">KR POS</p>
-          <h2 className="mx-auto mt-2 max-w-4xl text-balance text-[clamp(2.25rem,6vw,4.5rem)] font-bold leading-[1.05] tracking-[-0.04em]">
-            Todo tu negocio en una sola pantalla. <span className={GRAD_TEXT}>Nada que no necesites.</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-xl text-[#a1a1a6] sm:text-2xl">
-            Ingresos, gastos y ganancia al día, en bolívares, euros y dólares, desde la computadora o el teléfono.
-          </p>
-        </Reveal>
-
-        <Reveal className="relative mx-auto mt-14 max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#131020] shadow-[0_50px_140px_rgba(67,61,221,0.35)]">
-            <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.05] px-3.5 py-2.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-              <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-              <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-            </div>
-            <Image
-              src="/screenshot-finanzas-desktop-v2.png"
-              alt="Panel de Finanzas de KR POS con ingresos, gastos, ganancia neta y gráficos"
-              width={1440}
-              height={900}
-              sizes="(min-width: 1024px) 896px, 100vw"
-              className="h-auto w-full"
-            />
-          </div>
-          <div className="absolute -bottom-8 right-2 w-[24%] min-w-[96px] overflow-hidden rounded-[1.4rem] border-[5px] border-black shadow-[0_30px_80px_rgba(67,61,221,0.45)] sm:right-6">
-            <Image
-              src="/screenshot-finanzas-mobile-v2.png"
-              alt="Panel de Finanzas de KR POS en el teléfono"
-              width={390}
-              height={844}
-              sizes="220px"
-              className="h-auto w-full"
-            />
-          </div>
-        </Reveal>
-
-        <div className="mt-24 grid gap-x-12 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
-          {POS_FEATURES.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.05} className="border-t border-white/15 pt-5">
-              <h3 className="text-xl font-semibold tracking-tight">{f.title}</h3>
-              <p className="mt-2 text-lg leading-snug text-[#a1a1a6]">{f.description}</p>
-            </Reveal>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
@@ -118,7 +62,7 @@ const SERVICES = [
 
 export function WhatWeDo() {
   return (
-    <section id="servicios" className="bg-black px-5 py-24 sm:py-32">
+    <section id="servicios" className="px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-base font-semibold text-[#c9a6e8]">Servicios</p>
@@ -163,11 +107,10 @@ const SYSTEMS = [
 
 export function Systems() {
   return (
-    <section id="sistemas" className="border-t border-white/10 bg-[#0a0a0d] px-5 py-24 sm:py-32">
+    <section id="sistemas" className="border-t border-white/10 px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <p className="text-base font-semibold text-[#c9a6e8]">Sistemas empresariales</p>
-          <h2 className="mt-2 max-w-3xl text-balance text-[clamp(2.25rem,6vw,4.25rem)] font-bold leading-[1.05] tracking-[-0.04em]">
+          <h2 className="max-w-3xl text-balance text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.04em]">
             Ya en uso, listos para adaptarse a tu negocio.
           </h2>
         </Reveal>
@@ -191,54 +134,37 @@ export function Systems() {
   );
 }
 
-/* ─────────────────────────── Desarrollo web para salud ─────────────────────────── */
+/* ─────────────────────────── Desarrollo web corporativo ─────────────────────────── */
 
-const HEALTH_FEATURES = [
-  {
-    title: "Resultados en línea",
-    description: "El paciente consulta y descarga sus resultados desde la web con su cédula u orden, sin esperar en el mostrador ni pedirlos por WhatsApp.",
-  },
-  {
-    title: "Estudios de imagen",
-    description: "Rayos X y otros estudios entregados por nombre y fecha, con descarga por imagen o en un solo archivo.",
-  },
-  {
-    title: "Conectado a tu operación",
-    description: "El portal lee los resultados que tu laboratorio ya digitaliza, sin cambiar cómo trabaja tu equipo.",
-  },
-  {
-    title: "Web pública completa",
-    description: "Servicios, horarios, ofertas y novedades, siempre actualizables por tu equipo desde un panel propio.",
-  },
-  {
-    title: "Correos a tus pacientes y empresas",
-    description: "Base de datos de correos, envíos masivos con tu imagen o promoción, y enlace de baja en cada mensaje.",
-  },
-  {
-    title: "Protegido contra abuso",
-    description: "Verificación contra bots en el portal y un panel de administración con clave, para que solo entre quien debe.",
-  },
+const WEB_FEATURES = [
+  { title: "Tu empresa, bien presentada", description: "Una página web rápida y elegante que explica qué haces, transmite confianza y funciona perfecto en el teléfono." },
+  { title: "Se encuentra en Google", description: "Estructura, velocidad y textos pensados para que tus clientes te encuentren cuando te buscan." },
+  { title: "Formularios y WhatsApp", description: "Contacto directo, cotizaciones y botones de WhatsApp que convierten visitas en conversaciones." },
+  { title: "Panel para tu equipo", description: "Cambia textos, fotos, servicios y novedades tú mismo, sin depender de nadie para cada ajuste." },
+  { title: "Conectada a tus sistemas", description: "Catálogo, citas, resultados o pagos conectados con tu operación: la web trabaja por ti." },
+  { title: "Correos y campañas", description: "Base de contactos, envíos masivos con tu imagen y enlace de baja en cada mensaje." },
+  { title: "Seguridad y soporte", description: "Protección contra bots, claves de acceso al panel y acompañamiento después de publicar." },
+  { title: "Tu dominio, tu marca", description: "Dominio propio, correos con tu nombre y un diseño hecho a la medida de tu identidad." },
 ];
 
-export function Health() {
+export function CorporateWeb() {
   return (
-    <section id="desarrollo-web" className="border-t border-white/10 bg-black px-5 py-24 sm:py-32">
+    <section id="desarrollo-web" className="px-5 pb-24 pt-16 sm:pb-32 sm:pt-24">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <p className="text-base font-semibold text-[#c9a6e8]">Desarrollo web</p>
-          <h2 className="mt-2 max-w-4xl text-balance text-[clamp(2.25rem,6vw,4.25rem)] font-bold leading-[1.05] tracking-[-0.04em]">
-            Desarrollo Web para <span className={GRAD_TEXT}>Laboratorios Clínicos y Centros Médicos.</span>
-          </h2>
-          <p className="mt-4 max-w-2xl text-xl text-[#a1a1a6]">
-            Diseñamos la página web de tu laboratorio o centro médico y la conectamos con la automatización que más
-            tiempo le ahorra a tu personal: que el paciente reciba sus resultados y estudios sin hacer fila ni llamar.
+          <p className="text-base font-semibold text-[#c9a6e8]">Desarrollo web corporativo</p>
+          <h1 className="mt-2 max-w-4xl text-balance text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[1.03] tracking-[-0.045em]">
+            La página web que tu empresa <span className={GRAD_TEXT}>merece.</span>
+          </h1>
+          <p className="mt-5 max-w-2xl text-xl text-[#a1a1a6]">
+            Diseñamos y desarrollamos sitios web corporativos para empresas de cualquier sector: profesionales, rápidos y conectados con la forma en que trabajas.
           </p>
         </Reveal>
-        <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {HEALTH_FEATURES.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.05} className="border-t border-white/15 pt-6">
-              <h3 className="text-2xl font-semibold tracking-tight">{f.title}</h3>
-              <p className="mt-2 text-lg leading-snug text-[#a1a1a6]">{f.description}</p>
+        <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          {WEB_FEATURES.map((f, i) => (
+            <Reveal key={f.title} delay={(i % 4) * 0.05} className="border-t border-white/15 pt-6">
+              <h3 className="text-xl font-semibold tracking-tight">{f.title}</h3>
+              <p className="mt-2 text-base leading-snug text-[#a1a1a6]">{f.description}</p>
             </Reveal>
           ))}
         </div>
@@ -247,24 +173,16 @@ export function Health() {
             <p className="font-mono text-xs uppercase tracking-[0.12em] text-[#a1a1a6]">Caso real</p>
             <h3 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Laboratorio Clínico Planet</h3>
             <p className="mt-2 max-w-xl text-lg leading-snug text-[#a1a1a6]">
-              Su página web, su portal de resultados y su envío de correos fueron desarrollados por KR System.
+              Su página web corporativa, su portal para clientes y su envío de correos fueron desarrollados por KR System.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a
-              href="https://laboratorioplanet.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full bg-white px-6 py-2.5 text-base font-medium text-black transition-transform duration-150 ease-out active:scale-[0.97] pointer-coarse:py-3.5"
-            >
+            <a href="https://laboratorioplanet.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full bg-white px-6 py-2.5 text-base font-medium text-black transition-transform duration-150 ease-out active:scale-[0.97]">
               Ver la página <span aria-hidden="true" className="ml-1">→</span>
             </a>
-            <a
-              href="#contacto"
-              className="inline-flex items-center rounded-full border border-white/30 px-6 py-2.5 text-base font-medium transition-colors hover:bg-white/10 pointer-coarse:py-3.5"
-            >
-              Quiero una para mi centro
-            </a>
+            <Link href="/contacto" className="inline-flex items-center rounded-full border border-white/30 px-6 py-2.5 text-base font-medium transition-colors hover:bg-white/10">
+              Quiero una para mi empresa
+            </Link>
           </div>
         </Reveal>
       </div>
@@ -295,7 +213,7 @@ const PROCESS = [
 
 export function Process() {
   return (
-    <section id="proceso" className="bg-black px-5 py-24 sm:py-32">
+    <section id="proceso" className="px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-base font-semibold text-[#c9a6e8]">Proceso</p>
@@ -323,12 +241,6 @@ export function Process() {
 
 /* ───────────────────────────── Contacto + pie ───────────────────────────── */
 
-const CHANNELS = [
-  { label: "WhatsApp", value: CONTACT_PHONE, href: WHATSAPP_URL, external: true },
-  { label: "Correo", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}`, external: false },
-  { label: "Teléfono", value: CONTACT_PHONE, href: `tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`, external: false },
-];
-
 export function Contact() {
   return (
     <section
@@ -341,37 +253,24 @@ export function Contact() {
       }}
     >
       <Reveal className="mx-auto max-w-4xl">
-        <h2 className="text-[clamp(3rem,9vw,6rem)] font-bold leading-[1.02] tracking-[-0.045em]">¿Hablamos?</h2>
+        <h1 className="text-[clamp(3rem,9vw,6rem)] font-bold leading-[1.02] tracking-[-0.045em]">¿Hablamos?</h1>
         <p className="mx-auto mt-5 max-w-xl text-balance text-xl text-white/85 sm:text-2xl">
-          Cuéntanos qué necesita tu empresa. Tu primer sistema, con 14 días gratis para probarlo.
+          Cuéntanos qué necesita tu empresa: un sistema a la medida, tu página web corporativa o KR POS para tu negocio.
         </p>
       </Reveal>
-      <div className="mx-auto mt-14 grid max-w-4xl gap-4 sm:grid-cols-3">
-        {CHANNELS.map((c, i) => (
-          <Reveal key={c.label} delay={i * 0.06}>
-            <a
-              href={c.href}
-              target={c.external ? "_blank" : undefined}
-              rel={c.external ? "noopener noreferrer" : undefined}
-              className="flex h-full flex-col items-center justify-center gap-2 rounded-3xl border border-white/30 bg-white/[0.13] px-5 py-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-xl transition-transform duration-150 ease-out hover:bg-white/[0.18] active:scale-[0.98] [@media(prefers-reduced-transparency:reduce)]:bg-[#3a2a7a] [@media(prefers-reduced-transparency:reduce)]:backdrop-blur-none"
-            >
-              {c.label === "WhatsApp" && (
-                <Image src="/whatsapp-icon.png" alt="" width={22} height={22} className="h-5 w-5" />
-              )}
-              <span className="font-mono text-xs uppercase tracking-[0.12em] text-white/70">{c.label}</span>
-              <span className="break-all text-lg font-semibold tracking-tight">{c.value}</span>
-            </a>
-          </Reveal>
-        ))}
-      </div>
+      <Reveal delay={0.1} className="mx-auto mt-12 max-w-xl">
+        <ContactForm />
+      </Reveal>
     </section>
   );
 }
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-3 border-t border-white/10 bg-black px-5 py-10 text-center text-sm text-[#6e6e73]">
+    <footer className="flex flex-col items-center gap-3 border-t border-white/10 px-5 py-10 text-center text-sm text-[#6e6e73]">
       <div className="flex flex-wrap justify-center gap-x-5 gap-y-1">
+        <Link href="/" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">KR POS</Link>
+        <Link href="/contacto" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">Contacto</Link>
         <Link href="/privacidad" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">
           Política de Privacidad
         </Link>

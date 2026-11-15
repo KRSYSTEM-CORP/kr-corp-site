@@ -2,45 +2,52 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
-// A translucent glass bar pinned to the top, like Apple's: it blurs whatever
-// scrolls underneath, and gives way to a plain dark bar when the visitor asks
-// for reduced transparency.
+// Cada opción abre su propia pantalla: la portada es solo KR POS y el resto de la información
+// (cómo creamos sistemas, sistemas a medida, desarrollo web corporativo, contacto) vive aparte.
 const LINKS = [
-  { href: "#desarrollo-web", label: "Desarrollo web" },
-  { href: "#soluciones", label: "KR POS" },
-  { href: "#sistemas", label: "Sistemas" },
-  { href: "#proceso", label: "Proceso" },
-  { href: "#nosotros", label: "Nosotros" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "/", label: "KR POS" },
+  { href: "/como-creamos-sistemas", label: "Cómo creamos sistemas" },
+  { href: "/sistemas-a-medida", label: "Sistemas a medida" },
+  { href: "/desarrollo-web-corporativo", label: "Desarrollo web corporativo" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 export function SiteNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const active = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-xl backdrop-saturate-150 [@media(prefers-reduced-transparency:reduce)]:bg-black [@media(prefers-reduced-transparency:reduce)]:backdrop-blur-none">
       <div className="mx-auto flex h-12 max-w-6xl items-center justify-between px-5">
-        <a href="#" className="flex items-center gap-2 text-base font-semibold tracking-tight" aria-label="KR System, inicio">
+        <Link href="/" className="flex items-center gap-2 text-base font-semibold tracking-tight" aria-label="KR System, inicio">
           <Image src="/logo.png" alt="" width={22} height={24} className="h-6 w-auto" />
           KR System
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-8 text-[13px] text-[#d2d2d7] lg:flex" aria-label="Principal">
+        <nav className="hidden items-center gap-7 text-[13px] text-[#d2d2d7] lg:flex" aria-label="Principal">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="transition-colors duration-150 hover:text-white">
+            <Link
+              key={l.href}
+              href={l.href}
+              aria-current={active(l.href) ? "page" : undefined}
+              className={`transition-colors duration-150 hover:text-white ${active(l.href) ? "font-semibold text-white" : ""}`}
+            >
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
           <a
-            href="#contacto"
+            href="https://krpos.krsystem-corp.com/signup"
             className="hidden rounded-full bg-white px-3.5 py-1.5 text-xs font-medium text-black transition-transform duration-150 ease-out active:scale-[0.96] sm:block"
           >
-            Hablemos
+            Probar gratis
           </a>
           <button
             type="button"
@@ -72,21 +79,20 @@ export function SiteNavbar() {
           >
             <div className="flex flex-col px-5 py-3 text-lg font-medium text-[#f5f5f7]">
               {LINKS.map((l) => (
-                <a
+                <Link
                   key={l.href}
                   href={l.href}
                   onClick={() => setMenuOpen(false)}
-                  className="border-b border-white/10 py-3.5 transition-colors hover:text-white"
+                  className={`border-b border-white/10 py-3.5 transition-colors hover:text-white ${active(l.href) ? "text-white" : "text-[#d2d2d7]"}`}
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
               <a
-                href="#contacto"
-                onClick={() => setMenuOpen(false)}
+                href="https://krpos.krsystem-corp.com/signup"
                 className="my-4 rounded-full bg-white py-3 text-center text-base font-medium text-black"
               >
-                Hablemos
+                Probar KR POS gratis
               </a>
             </div>
           </motion.nav>

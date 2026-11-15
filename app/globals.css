@@ -21,7 +21,7 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background: transparent;
   color: var(--ink);
 }
 
@@ -39,4 +39,31 @@ section[id] {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Fondo de galaxia: las nebulosas respiran despacio. */
+@keyframes galaxy-breathe {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.85; }
+  50% { transform: translate3d(3%, -4%, 0) scale(1.12); opacity: 1; }
+}
+.galaxy-nebula { animation: galaxy-breathe 22s ease-in-out infinite; }
+
+/* Degradado de marca que se desplaza en las palabras clave. */
+@keyframes brand-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.brand-shift { background-size: 200% auto; animation: brand-shift 7s linear infinite; }
+
+/* Cinta de módulos. */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Elementos que flotan. */
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.float-y { animation: float-y 5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-nebula, .brand-shift, .marquee-track, .float-y { animation: none; }
 }

@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const TITLE = "KR System — Diseño de apps y sistemas a medida";
+const TITLE = "KR POS — El sistema para vender, controlar y crecer | KR System";
 const DESCRIPTION =
-  "Diseñamos y desarrollamos aplicaciones, sistemas y software a medida para pequeñas y medianas empresas.";
+  "KR POS: punto de venta, inventario, caja, estadísticas y Asistente IA en un solo sistema para negocios de Venezuela. Prueba 14 días gratis. Por KR System.";
 
 export const metadata: Metadata = {
   title: TITLE,

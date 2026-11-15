@@ -19,7 +19,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden bg-black px-5 pt-20 text-center sm:pt-28"
+      className="relative overflow-hidden px-5 pt-20 text-center sm:pt-28"
       style={{ backgroundImage: "radial-gradient(80% 55% at 50% 100%, rgba(126,42,192,0.6), rgba(67,61,221,0.18) 45%, transparent 72%)" }}
     >
       <motion.div initial="hidden" animate="show" transition={{ staggerChildren: 0.1 }} className="mx-auto flex max-w-5xl flex-col items-center">
@@ -41,7 +41,7 @@ export function Hero() {
             href={SIGNUP}
             className="rounded-full bg-gradient-to-r from-[#4f46e5] to-[#9333ea] px-8 py-3.5 text-lg font-semibold text-white shadow-[0_10px_40px_rgba(79,70,229,0.5)] transition-transform duration-150 ease-out active:scale-[0.97]"
           >
-            Probar 14 días gratis
+            Probar 15 días gratis
           </a>
           <a href="#recorrido" className="text-lg text-[#8da2ff] transition-colors hover:text-white pointer-coarse:py-2">
             Ver cómo funciona <span aria-hidden="true">›</span>

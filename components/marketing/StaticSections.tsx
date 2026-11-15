@@ -12,7 +12,7 @@ const GRAD_TEXT = "bg-gradient-to-r from-[#6c6bff] via-[#b44cf0] to-[#ff3da0] bg
 
 export function PageHeader({ eyebrow, title, text }: { eyebrow: string; title: React.ReactNode; text: string }) {
   return (
-    <section className="bg-black px-5 pb-6 pt-20 sm:pt-28">
+    <section className="px-5 pb-6 pt-20 sm:pt-28">
       <Reveal className="mx-auto max-w-6xl">
         <p className="text-base font-semibold text-[#c9a6e8]">{eyebrow}</p>
         <h1 className="mt-2 max-w-4xl text-balance text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[1.03] tracking-[-0.045em]">{title}</h1>
@@ -24,7 +24,7 @@ export function PageHeader({ eyebrow, title, text }: { eyebrow: string; title: R
 
 export function Statement() {
   return (
-    <section id="nosotros" className="bg-black px-5 py-20 sm:py-28">
+    <section id="nosotros" className="px-5 py-20 sm:py-28">
       <Reveal className="mx-auto max-w-4xl text-center">
         <p className="text-base font-semibold text-[#c9a6e8]">Cómo pensamos</p>
         <p className="mt-4 text-balance text-[clamp(1.9rem,5vw,3.6rem)] font-bold leading-[1.08] tracking-[-0.035em]">
@@ -64,7 +64,7 @@ const SERVICES = [
 
 export function WhatWeDo() {
   return (
-    <section id="servicios" className="bg-black px-5 py-24 sm:py-32">
+    <section id="servicios" className="px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-base font-semibold text-[#c9a6e8]">Servicios</p>
@@ -109,7 +109,7 @@ const SYSTEMS = [
 
 export function Systems() {
   return (
-    <section id="sistemas" className="border-t border-white/10 bg-[#0a0a0d] px-5 py-24 sm:py-32">
+    <section id="sistemas" className="border-t border-white/10 px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <h2 className="max-w-3xl text-balance text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.04em]">
@@ -151,7 +151,7 @@ const WEB_FEATURES = [
 
 export function CorporateWeb() {
   return (
-    <section id="desarrollo-web" className="bg-black px-5 pb-24 pt-16 sm:pb-32 sm:pt-24">
+    <section id="desarrollo-web" className="px-5 pb-24 pt-16 sm:pb-32 sm:pt-24">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-base font-semibold text-[#c9a6e8]">Desarrollo web corporativo</p>
@@ -215,7 +215,7 @@ const PROCESS = [
 
 export function Process() {
   return (
-    <section id="proceso" className="bg-black px-5 py-24 sm:py-32">
+    <section id="proceso" className="px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-base font-semibold text-[#c9a6e8]">Proceso</p>
@@ -290,7 +290,7 @@ export function Contact() {
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-3 border-t border-white/10 bg-black px-5 py-10 text-center text-sm text-[#6e6e73]">
+    <footer className="flex flex-col items-center gap-3 border-t border-white/10 px-5 py-10 text-center text-sm text-[#6e6e73]">
       <div className="flex flex-wrap justify-center gap-x-5 gap-y-1">
         <Link href="/" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">KR POS</Link>
         <Link href="/contacto" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">Contacto</Link>

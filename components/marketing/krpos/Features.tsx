@@ -15,7 +15,7 @@ const FEATURES = [
 
 export function Features() {
   return (
-    <section id="funciones" aria-label="Funciones de KR POS" className="bg-[#0a0a0d] px-5 py-24 sm:py-32">
+    <section id="funciones" aria-label="Funciones de KR POS" className="px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-base font-semibold text-[#c9a6e8]">Pensado para tu día a día</p>

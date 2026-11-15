@@ -18,7 +18,7 @@ export function AssistantDemo() {
   }, []);
 
   return (
-    <section id="asistente" aria-label="Asistente IA" className="bg-black px-5 py-24 sm:py-32">
+    <section id="asistente" aria-label="Asistente IA" className="px-5 py-24 sm:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
         <Reveal>
           <p className="text-base font-semibold text-[#c9a6e8]">Asistente IA</p>

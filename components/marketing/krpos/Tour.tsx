@@ -17,8 +17,13 @@ const MODULES = [
 export function Tour() {
   const [id, setId] = useState<(typeof MODULES)[number]["id"]>("pos");
   const m = MODULES.find((x) => x.id === id) ?? MODULES[0];
+  const [dir, setDir] = useState(1);
+  const pick = (next: (typeof MODULES)[number]["id"]) => {
+    setDir(MODULES.findIndex((x) => x.id === next) >= MODULES.findIndex((x) => x.id === id) ? 1 : -1);
+    setId(next);
+  };
   return (
-    <section id="recorrido" aria-label="Recorrido por KR POS" className="bg-[#0a0a0d] px-5 py-24 sm:py-32">
+    <section id="recorrido" aria-label="Recorrido por KR POS" className="px-5 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal className="text-center">
           <p className="text-base font-semibold text-[#c9a6e8]">Todo en uno</p>
@@ -35,7 +40,7 @@ export function Tour() {
               type="button"
               role="tab"
               aria-selected={id === x.id}
-              onClick={() => setId(x.id)}
+              onClick={() => pick(x.id)}
               className={`shrink-0 rounded-full px-5 py-2.5 text-base font-semibold transition-colors ${id === x.id ? "bg-white text-black" : "bg-white/[0.08] text-[#d2d2d7] hover:bg-white/15"}`}
             >
               {x.tab}
@@ -46,10 +51,10 @@ export function Tour() {
         <AnimatePresence mode="wait">
           <motion.div
             key={m.id}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, x: 70 * dir, scale: 0.97, filter: "blur(8px)" }}
+            animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, x: -70 * dir, scale: 0.97, filter: "blur(8px)" }}
+            transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
             className="mt-10 grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
           >
             <div>

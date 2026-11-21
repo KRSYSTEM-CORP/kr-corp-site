@@ -71,22 +71,49 @@ export function accountState(
   return a.hasPaid ? "current" : "trial";
 }
 
-async function load(def: SystemDef): Promise<SystemSnapshot | null> {
+type Raw = { companies: any[]; paid: any[]; users: any[]; recent: any[]; pending: any[]; month: any[] };
+
+// KR POS vive en un servidor propio cuya base no se abre a internet: el panel la lee por un
+// servicio de solo lectura (POS_ADMIN_API_URL + POS_ADMIN_API_TOKEN). Si no está configurado,
+// se mantiene la lectura directa de antes.
+async function fetchViaApi(def: SystemDef): Promise<Raw | null> {
+  const url = def.key === "pos" ? process.env.POS_ADMIN_API_URL : undefined;
+  const token = def.key === "pos" ? process.env.POS_ADMIN_API_TOKEN : undefined;
+  if (!url || !token) return null;
+  const res = await fetch(url, { headers: { authorization: `Bearer ${token}` }, cache: "no-store", signal: AbortSignal.timeout(10_000) });
+  if (!res.ok) throw new Error(`api ${res.status}`);
+  const j = await res.json();
+  const date = (r: any, k: string) => (r[k] ? { ...r, [k]: new Date(r[k]) } : r);
+  return {
+    companies: j.companies.map((r: any) => date(date(r, "createdAt"), "nextPaymentDueDate")),
+    paid: j.paid.map((r: any) => date(r, "last")),
+    users: j.users,
+    recent: j.recent.map((r: any) => date(r, "createdAt")),
+    pending: j.pending,
+    month: j.month,
+  };
+}
+
+async function fetchViaPool(def: SystemDef): Promise<Raw | null> {
   const pool = poolFor(def);
   if (!pool) return null;
   const { table, fk } = def;
-
-  const [companies, paid, users, recent, pending] = await Promise.all([
-    pool.query(
-      `SELECT id, name, "createdAt", "isExempt", "monthlyFeeUsdCents", "nextPaymentDueDate" FROM "${table}" ORDER BY "createdAt" DESC`
-    ),
-    pool.query(
-      `SELECT "${fk}" AS owner, count(*)::int AS n, coalesce(sum("amountUsdCents"),0)::int AS total, max("createdAt") AS last FROM "Payment" GROUP BY "${fk}"`
-    ),
+  const monthStart = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+  const [companies, paid, users, recent, pending, month] = await Promise.all([
+    pool.query(`SELECT id, name, "createdAt", "isExempt", "monthlyFeeUsdCents", "nextPaymentDueDate" FROM "${table}" ORDER BY "createdAt" DESC`),
+    pool.query(`SELECT "${fk}" AS owner, count(*)::int AS n, coalesce(sum("amountUsdCents"),0)::int AS total, max("createdAt") AS last FROM "Payment" GROUP BY "${fk}"`),
     pool.query(`SELECT "${fk}" AS owner, count(*)::int AS n FROM "User" GROUP BY "${fk}"`),
     pool.query(`SELECT "${fk}" AS owner, "amountUsdCents", "createdAt" FROM "Payment" ORDER BY "createdAt" DESC LIMIT 15`),
     pool.query(`SELECT count(*)::int AS n FROM "PaymentReport" WHERE status = 'PENDING'`),
+    pool.query(`SELECT coalesce(sum("amountUsdCents"),0)::int AS total FROM "Payment" WHERE "createdAt" >= $1`, [monthStart]),
   ]);
+  return { companies: companies.rows, paid: paid.rows, users: users.rows, recent: recent.rows, pending: pending.rows, month: month.rows };
+}
+
+async function load(def: SystemDef): Promise<SystemSnapshot | null> {
+  const raw = (await fetchViaApi(def)) ?? (await fetchViaPool(def));
+  if (!raw) return null;
+  const companies = { rows: raw.companies }, paid = { rows: raw.paid }, users = { rows: raw.users }, recent = { rows: raw.recent }, pending = { rows: raw.pending };
 
   const paidBy = new Map(paid.rows.map((r) => [r.owner as string, r]));
   const usersBy = new Map(users.rows.map((r) => [r.owner as string, r.n as number]));
@@ -108,11 +135,7 @@ async function load(def: SystemDef): Promise<SystemSnapshot | null> {
     };
   });
 
-  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-  const month = await pool.query(
-    `SELECT coalesce(sum("amountUsdCents"),0)::int AS total FROM "Payment" WHERE "createdAt" >= $1`,
-    [monthStart]
-  );
+  const month = { rows: raw.month };
 
   return {
     key: def.key,

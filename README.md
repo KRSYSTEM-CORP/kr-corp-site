@@ -34,3 +34,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Panel de admin: variables de KR POS
+
+El panel lee los datos de KR POS de una de dos formas:
+
+- **Por el servicio de solo lectura del servidor propio** (recomendada): `POS_ADMIN_API_URL` (por ejemplo `https://adminapi.krsystem-corp.com/pos`) y `POS_ADMIN_API_TOKEN`. La base del servidor no se expone a internet.
+- **Directo a la base** (solo si la base es accesible): `POS_READONLY_URL`. Se usa si las dos anteriores no están definidas.
+
+KR Citas sigue usando `CITAS_READONLY_URL`.

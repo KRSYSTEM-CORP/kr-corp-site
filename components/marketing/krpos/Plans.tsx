@@ -3,8 +3,8 @@ import { Reveal } from "@/components/marketing/Reveal";
 const SIGNUP = "https://krpos.krsystem-corp.com/signup";
 
 const PLANS = [
-  { name: "Emprende", price: "$12,99", first: "$9,99", note: "luego $12,99 al mes", tag: "Todo el sistema para empezar", items: ["Todos los módulos excepto Contabilidad", "1 usuario: el dueño o gerente", "Hasta 100 productos", "Learning y Asistente IA (1 crédito por consulta)"], featured: false },
-  { name: "Pyme", price: "$23,99", note: "por mes", first: null, tag: "Más equipo, inventario e IA", items: ["Todo lo de Emprende", "Módulo de Contabilidad incluido", "100 créditos de Asistente IA al mes", "5 usuarios", "Hasta 500 productos y varias sucursales"], featured: true },
+  { name: "Emprende", price: "$12,99", first: "$9,99", note: "luego $12,99 al mes", tag: "Todo el sistema para empezar", items: ["Todos los módulos excepto Contabilidad", "Hasta 5 usuarios (perfiles de trabajadores)", "Hasta 100 productos", "Learning y Asistente IA (1 crédito por consulta)"], featured: false },
+  { name: "Pyme", price: "$23,99", note: "por mes", first: null, tag: "Más equipo, inventario e IA", items: ["Todo lo de Emprende", "Módulo de Contabilidad incluido", "100 créditos de Asistente IA al mes", "Hasta 30 usuarios (perfiles de trabajadores)", "Hasta 500 productos y varias sucursales"], featured: true },
   { name: "Corporativo", price: "$44,99", note: "por mes", first: null, tag: "Para equipos grandes", items: ["Todo lo de Pyme", "200 créditos de Asistente IA al mes", "10 usuarios", "Productos ilimitados", "Un módulo personalizado para tu empresa, una creación por mes"], featured: false },
 ];
 

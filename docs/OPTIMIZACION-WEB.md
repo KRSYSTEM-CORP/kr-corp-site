@@ -23,3 +23,11 @@ Lighthouse headless, mismo Chrome. Antes = producción krsystem-corp.com; despu�
 - Turnstile/captcha en formularios: el formulario de contacto abre el correo del usuario (mailto), no hay envío en servidor.
 - El límite de login es en memoria por instancia; uno global requeriría Redis/BD.
 - Lint tiene 10 errores previos de `any` en lib/admin/systems.ts (no tocados).
+
+## Segunda ronda (2026-11-25)
+- Lint en verde: tipos reales en lib/admin/systems.ts (sin cambio de comportamiento).
+- Móvil, mediana de 3 corridas: rendimiento 85 (antes 74 en prod), TBT 230 ms, LCP simulado 3,6 s pero LCP observado 0,48 s; escritorio 100. Galaxy ya no se carga en móvil ni con «reducir movimiento» y en escritorio arranca en idle; Tour y AssistantDemo en trozos aparte; texto del hero visible desde el HTML.
+- Accesibilidad 100 (contraste #6e6e73 a #8e8e93).
+- Capturas de KR POS: PNG 236-416 KB a WebP 68-129 KB; borrados los PNG y los screenshot-*.png sin uso.
+- Límite de login global en tabla `LoginAttempt` (migración aditiva `20261125120000_login_attempt`, NO aplicada a producción; falla abierta si la tabla no existe).
+- CSP: se probó SRI y nonces; los scripts en línea de Next los bloquean sin render dinámico, así que se mantiene 'unsafe-inline' en script-src.

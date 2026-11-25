@@ -22,7 +22,7 @@ export function Hero() {
       className="relative overflow-hidden px-5 pt-20 text-center sm:pt-28"
       style={{ backgroundImage: "radial-gradient(80% 55% at 50% 100%, rgba(126,42,192,0.6), rgba(67,61,221,0.18) 45%, transparent 72%)" }}
     >
-      <motion.div initial="hidden" animate="show" transition={{ staggerChildren: 0.1 }} className="mx-auto flex max-w-5xl flex-col items-center">
+      <motion.div initial={false} animate="show" transition={{ staggerChildren: 0.1 }} className="mx-auto flex max-w-5xl flex-col items-center">
         <motion.p variants={rise} className="rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-sm font-semibold text-[#c9a6e8]">
           Nuevo · Asistente IA que crea PDF y registra ventas
         </motion.p>
@@ -47,13 +47,13 @@ export function Hero() {
             Ver cómo funciona <span aria-hidden="true">›</span>
           </a>
         </motion.div>
-        <motion.p variants={rise} className="mt-4 text-sm text-[#6e6e73]">
+        <motion.p variants={rise} className="mt-4 text-sm text-[#8e8e93]">
           Sin tarjeta y sin compromiso · Plan Emprende desde $9,99 el primer mes
         </motion.p>
       </motion.div>
 
       <motion.div
-        initial={{ y: 60 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: EASE }}
         style={{ scale, y }}
@@ -67,12 +67,12 @@ export function Hero() {
               <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
               <span className="mx-auto hidden rounded-md bg-white/[0.07] px-4 py-0.5 font-mono text-[11px] text-[#a1a1a6] sm:block">krpos.krsystem-corp.com</span>
             </div>
-            <Image src="/krpos/inicio.png" alt="Pantalla de Inicio de KR POS con ganancia del período, accesos rápidos y ventas por hora" width={1440} height={900} sizes="(min-width: 1024px) 1024px, 100vw" priority className="h-auto w-full" />
+            <Image src="/krpos/inicio.webp" alt="Pantalla de Inicio de KR POS con ganancia del período, accesos rápidos y ventas por hora" width={1440} height={900} sizes="(min-width: 1024px) 1024px, 100vw" priority className="h-auto w-full" />
           </div>
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent" />
         </div>
         <div className="absolute -right-1 bottom-6 w-[27%] max-w-[190px] rotate-3 overflow-hidden rounded-[1.6rem] border-[5px] border-black shadow-[0_30px_80px_rgba(0,0,0,0.7)] sm:-right-8 sm:bottom-10">
-          <Image src="/krpos/movil-pos.png" alt="KR POS en el teléfono, con el punto de venta" width={390} height={844} sizes="190px" className="h-auto w-full" />
+          <Image src="/krpos/movil-pos.webp" alt="KR POS en el teléfono, con el punto de venta" width={390} height={844} sizes="190px" className="h-auto w-full" />
         </div>
       </motion.div>
     </section>

@@ -31,7 +31,7 @@ export function Features() {
         </div>
         <Reveal className="mx-auto mt-20 max-w-xs">
           <div className="overflow-hidden rounded-[2rem] border-[6px] border-[#1c1a2b] shadow-[0_40px_100px_rgba(67,61,221,0.4)]">
-            <Image src="/krpos/movil-inicio.png" alt="Inicio de KR POS en el teléfono" width={390} height={844} sizes="320px" className="h-auto w-full" />
+            <Image src="/krpos/movil-inicio.webp" alt="Inicio de KR POS en el teléfono" width={390} height={844} sizes="320px" className="h-auto w-full" />
           </div>
           <p className="mt-4 text-center text-sm text-[#a1a1a6]">También en tu teléfono, como una app.</p>
         </Reveal>

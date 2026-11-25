@@ -102,3 +102,10 @@ model WebEvent {
 
   @@index([type, createdAt])
 }
+
+// Límite global de intentos de inicio de sesión del panel (clave "ip:..." o "em:...").
+model LoginAttempt {
+  key         String   @id
+  count       Int      @default(1)
+  windowStart DateTime @default(now())
+}

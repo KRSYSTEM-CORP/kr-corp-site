@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-// CSP: Next inyecta scripts en línea para la hidratación, por eso 'unsafe-inline' en script-src.
-// Todo lo demás queda cerrado a nuestro propio origen. Las capturas de KR POS son del mismo sitio.
+// CSP: Next inyecta scripts en línea (datos de hidratación) y SRI no los cubre; quitar 'unsafe-inline' exige nonces,
+// que obligan a render dinámico en todas las páginas (se pierde la caché estática). Se probó y se descartó. El resto queda cerrado a nuestro origen.
 const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'" + (process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""),

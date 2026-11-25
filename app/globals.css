@@ -9,7 +9,7 @@
   --bg: #000;
   --ink: #f5f5f7;
   --ink-dim: #a1a1a6;
-  --ink-faint: #6e6e73;
+  --ink-faint: #8e8e93;
   --blue: #433ddd;
   --violet: #7e2ac0;
   --pink: #e2098c;
@@ -72,4 +72,8 @@ section[id] {
 :focus-visible {
   outline: 2px solid #8da2ff;
   outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .galaxy-nebula { animation: none; }
 }

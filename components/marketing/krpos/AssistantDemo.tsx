@@ -101,7 +101,7 @@ export function AssistantDemo() {
               </AnimatePresence>
             </div>
           </div>
-          <p className="mt-3 text-center text-xs text-[#6e6e73]">Demostración con datos de ejemplo.</p>
+          <p className="mt-3 text-center text-xs text-[#8e8e93]">Demostración con datos de ejemplo.</p>
         </Reveal>
       </div>
     </section>

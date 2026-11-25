@@ -1,6 +1,9 @@
 import { Hero } from "@/components/marketing/krpos/Hero";
-import { Tour } from "@/components/marketing/krpos/Tour";
-import { AssistantDemo } from "@/components/marketing/krpos/AssistantDemo";
+import dynamic from "next/dynamic";
+
+// Debajo del primer pantallazo: su JS se carga en trozos aparte (el HTML sigue saliendo prerenderizado).
+const Tour = dynamic(() => import("@/components/marketing/krpos/Tour").then((m) => m.Tour));
+const AssistantDemo = dynamic(() => import("@/components/marketing/krpos/AssistantDemo").then((m) => m.AssistantDemo));
 import { Features } from "@/components/marketing/krpos/Features";
 import { Plans } from "@/components/marketing/krpos/Plans";
 import { FinalCta } from "@/components/marketing/krpos/FinalCta";

@@ -267,7 +267,7 @@ export function Contact() {
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-3 border-t border-white/10 px-5 py-10 text-center text-sm text-[#6e6e73]">
+    <footer className="flex flex-col items-center gap-3 border-t border-white/10 px-5 py-10 text-center text-sm text-[#8e8e93]">
       <div className="flex flex-wrap justify-center gap-x-5 gap-y-1">
         <Link href="/" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">KR POS</Link>
         <Link href="/contacto" className="inline-block transition-colors hover:text-white pointer-coarse:py-3">Contacto</Link>

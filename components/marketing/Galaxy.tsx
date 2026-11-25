@@ -11,6 +11,13 @@ export function Galaxy() {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Sin canvas en móvil ni con «reducir movimiento»: el fondo CSS basta y se ahorra todo el JS de dibujo.
+    if (window.innerWidth < 768 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let stop: (() => void) | void;
+    const idle = window.requestIdleCallback ?? ((f: () => void) => window.setTimeout(f, 1200));
+    const cancel = window.cancelIdleCallback ?? window.clearTimeout;
+    const id = idle(() => { stop = init(); });
+    const init = (): (() => void) | void => {
     const canvas = ref.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
@@ -118,6 +125,11 @@ export function Galaxy() {
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
+    };
+    };
+    return () => {
+      cancel(id);
+      if (stop) stop();
     };
   }, []);
 

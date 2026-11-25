@@ -53,9 +53,9 @@ export function Hero() {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 70 }}
+        initial={{ y: 60 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.1, ease: EASE, delay: 0.35 }}
+        transition={{ duration: 0.9, ease: EASE }}
         style={{ scale, y }}
         className="relative mx-auto mt-12 w-full max-w-5xl origin-top sm:mt-14"
       >

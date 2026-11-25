@@ -9,11 +9,14 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 const TITLE = "KR POS — El sistema para vender, controlar y crecer | KR System";
@@ -21,9 +24,12 @@ const DESCRIPTION =
   "KR POS: punto de venta, inventario, caja, estadísticas y Asistente IA en un solo sistema para negocios de Venezuela. Prueba 15 días gratis. Por KR System.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://krsystem-corp.com"),
   title: TITLE,
   description: DESCRIPTION,
-  openGraph: { title: TITLE, description: DESCRIPTION, type: "website", locale: "es_VE", siteName: "KR System" },
+  alternates: { canonical: "/" },
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "website", locale: "es_VE", siteName: "KR System", url: "/" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 // Black browser chrome on phones, matching the page's own background.

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalDocument, LegalSection } from "@/components/legal/LegalDocument";
 import { CONTACT_EMAIL, LEGAL_UPDATED_AT } from "@/lib/legal";
 
-export const metadata: Metadata = { title: "Términos y Condiciones · KR System" };
+export const metadata: Metadata = { title: "Términos y Condiciones · KR System", alternates: { canonical: "/terminos" } };
 
 export default function TermsPage() {
   return (

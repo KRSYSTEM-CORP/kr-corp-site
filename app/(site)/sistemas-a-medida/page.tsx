@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Contact, PageHeader, Systems } from "@/components/marketing/StaticSections";
 
-export const metadata: Metadata = { title: "Sistemas a medida — KR System", description: "Sistemas adaptados a tu empresa: KR POS, KR Citas y desarrollos hechos a la medida." };
+export const metadata: Metadata = { title: "Sistemas a medida — KR System", alternates: { canonical: "/sistemas-a-medida" }, description: "Sistemas adaptados a tu empresa: KR POS, KR Citas y desarrollos hechos a la medida." };
 
 export default function Page() {
   return (

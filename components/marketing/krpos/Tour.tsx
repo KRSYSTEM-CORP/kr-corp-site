@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m as motion } from "framer-motion";
 import { Reveal } from "@/components/marketing/Reveal";
 
 const MODULES = [
-  { id: "pos", tab: "Vender", title: "Un punto de venta que no se detiene", text: "Cobra en segundos desde el teléfono o la computadora, con pagos mixtos, descuentos, cupones y ventas a crédito. Si se cae el internet sigues vendiendo y todo se sincroniza solo.", bullets: ["Bs, € y $ con la tasa BCV del día", "Cupones y descuentos con un toque", "Modo sin internet"], img: "/krpos/pos.png", alt: "Punto de venta de KR POS con productos, carrito y cobro" },
-  { id: "inventario", tab: "Inventario", title: "Sabes qué tienes, siempre", text: "Productos con foto, existencias por sucursal, alertas de stock bajo y carga masiva por Excel. Las compras a proveedores suman stock solas.", bullets: ["Alertas de stock bajo", "Carga y descarga por Excel", "Traspasos entre sucursales"], img: "/krpos/inventario.png", alt: "Inventario de KR POS con existencias y alertas de stock" },
-  { id: "caja", tab: "Caja Chica", title: "Abre y cierra tu caja sin sorpresas", text: "Abres el turno, registras entradas y salidas, y al cerrar cuentas el efectivo: el sistema te dice si cuadra. Cada cierre queda con su historial y su PDF.", bullets: ["Corte Z en PDF", "Conteo de efectivo y diferencia", "Historial de cierres"], img: "/krpos/caja.png", alt: "Caja Chica de KR POS con abrir caja, cerrar caja y efectivo esperado" },
-  { id: "estadisticas", tab: "Estadísticas", title: "Cuánto ganas de verdad", text: "Ventas, costos, gastos y utilidad calculados con fórmulas financieras: ventas netas sin IVA, punto de equilibrio, rotación y reposición sugerida.", bullets: ["Cascada de utilidad", "Punto de equilibrio y meta", "Reposición sugerida"], img: "/krpos/estadisticas.png", alt: "Estadísticas de KR POS con cascada de utilidad y punto de equilibrio" },
-  { id: "admin", tab: "Administración", title: "Tus cuentas, claras", text: "Cuentas por cobrar con antigüedad, compras que descuentan de la cuenta de origen, nómina por partes y adelantos, bancos con saldo y libros fiscales.", bullets: ["Cuentas por cobrar y abonos", "Pagos desde tus cuentas bancarias", "Nómina a tu medida"], img: "/krpos/administracion.png", alt: "Administración de KR POS con Balance, Cuentas por cobrar y Compras" },
-  { id: "marketing", tab: "Marketing", title: "Haz que vuelvan", text: "Conoce a tus clientes, agrúpalos por visitas y gasto, crea promociones con código y envíalas por WhatsApp. Cuando canjean, queda registrado.", bullets: ["Mapa de clientes", "Promociones con código", "Envío por WhatsApp"], img: "/krpos/marketing.png", alt: "Marketing de KR POS con clientes y promociones" },
+  { id: "pos", tab: "Vender", title: "Un punto de venta que no se detiene", text: "Cobra en segundos desde el teléfono o la computadora, con pagos mixtos, descuentos, cupones y ventas a crédito. Si se cae el internet sigues vendiendo y todo se sincroniza solo.", bullets: ["Bs, € y $ con la tasa BCV del día", "Cupones y descuentos con un toque", "Modo sin internet"], img: "/krpos/pos.webp", alt: "Punto de venta de KR POS con productos, carrito y cobro" },
+  { id: "inventario", tab: "Inventario", title: "Sabes qué tienes, siempre", text: "Productos con foto, existencias por sucursal, alertas de stock bajo y carga masiva por Excel. Las compras a proveedores suman stock solas.", bullets: ["Alertas de stock bajo", "Carga y descarga por Excel", "Traspasos entre sucursales"], img: "/krpos/inventario.webp", alt: "Inventario de KR POS con existencias y alertas de stock" },
+  { id: "caja", tab: "Caja Chica", title: "Abre y cierra tu caja sin sorpresas", text: "Abres el turno, registras entradas y salidas, y al cerrar cuentas el efectivo: el sistema te dice si cuadra. Cada cierre queda con su historial y su PDF.", bullets: ["Corte Z en PDF", "Conteo de efectivo y diferencia", "Historial de cierres"], img: "/krpos/caja.webp", alt: "Caja Chica de KR POS con abrir caja, cerrar caja y efectivo esperado" },
+  { id: "estadisticas", tab: "Estadísticas", title: "Cuánto ganas de verdad", text: "Ventas, costos, gastos y utilidad calculados con fórmulas financieras: ventas netas sin IVA, punto de equilibrio, rotación y reposición sugerida.", bullets: ["Cascada de utilidad", "Punto de equilibrio y meta", "Reposición sugerida"], img: "/krpos/estadisticas.webp", alt: "Estadísticas de KR POS con cascada de utilidad y punto de equilibrio" },
+  { id: "admin", tab: "Administración", title: "Tus cuentas, claras", text: "Cuentas por cobrar con antigüedad, compras que descuentan de la cuenta de origen, nómina por partes y adelantos, bancos con saldo y libros fiscales.", bullets: ["Cuentas por cobrar y abonos", "Pagos desde tus cuentas bancarias", "Nómina a tu medida"], img: "/krpos/administracion.webp", alt: "Administración de KR POS con Balance, Cuentas por cobrar y Compras" },
+  { id: "marketing", tab: "Marketing", title: "Haz que vuelvan", text: "Conoce a tus clientes, agrúpalos por visitas y gasto, crea promociones con código y envíalas por WhatsApp. Cuando canjean, queda registrado.", bullets: ["Mapa de clientes", "Promociones con código", "Envío por WhatsApp"], img: "/krpos/marketing.webp", alt: "Marketing de KR POS con clientes y promociones" },
 ] as const;
 
 export function Tour() {
@@ -51,9 +51,9 @@ export function Tour() {
         <AnimatePresence mode="wait">
           <motion.div
             key={m.id}
-            initial={{ opacity: 0, x: 70 * dir, scale: 0.97, filter: "blur(8px)" }}
-            animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
-            exit={{ opacity: 0, x: -70 * dir, scale: 0.97, filter: "blur(8px)" }}
+            initial={{ opacity: 0, x: 70 * dir, scale: 0.97 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -70 * dir, scale: 0.97 }}
             transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
             className="mt-10 grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
           >

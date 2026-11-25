@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalDocument, LegalSection } from "@/components/legal/LegalDocument";
 import { CONTACT_EMAIL, LEGAL_UPDATED_AT } from "@/lib/legal";
 
-export const metadata: Metadata = { title: "Aviso de Cookies · KR System" };
+export const metadata: Metadata = { title: "Aviso de Cookies · KR System", alternates: { canonical: "/cookies" } };
 
 export default function CookiesNoticePage() {
   return (

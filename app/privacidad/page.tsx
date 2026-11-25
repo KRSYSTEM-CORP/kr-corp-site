@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalDocument, LegalSection } from "@/components/legal/LegalDocument";
 import { CONTACT_EMAIL, LEGAL_UPDATED_AT, WHATSAPP_PHONE } from "@/lib/legal";
 
-export const metadata: Metadata = { title: "Política de Privacidad · KR System" };
+export const metadata: Metadata = { title: "Política de Privacidad · KR System", alternates: { canonical: "/privacidad" } };
 
 export default function PrivacyPolicyPage() {
   return (

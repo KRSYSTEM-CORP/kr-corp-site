@@ -9,7 +9,8 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
+  adjustFontFallback: true,
 });
 
 const geistMono = Geist_Mono({

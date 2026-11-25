@@ -74,6 +74,16 @@ section[id] {
   outline-offset: 3px;
 }
 
-@media (max-width: 767px) {
-  .galaxy-nebula { animation: none; }
-}
+/* Entrada del hero en CSS puro: sin JS, solo opacity/transform. */
+@keyframes hero-rise { from { opacity: 0; transform: translate3d(0, 24px, 0); } to { opacity: 1; transform: none; } }
+.hero-rise { animation: hero-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes hero-frame { from { transform: translate3d(0, 50px, 0); } to { transform: none; } }
+.hero-frame { animation: hero-frame 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@media (prefers-reduced-motion: reduce) { .hero-rise, .hero-frame { animation: none; } }
+
+/* Aparición al hacer scroll (sustituye a framer-motion en Reveal). */
+.reveal { opacity: 0; transform: translate3d(0, 28px, 0); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.reveal-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+.galaxy-nebula, .hero-frame, .hero-rise { will-change: transform, opacity; }

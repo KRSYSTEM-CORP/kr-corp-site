@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 // Cada opción abre su propia pantalla: la portada es solo KR POS y el resto de la información
 // (cómo creamos sistemas, sistemas a medida, desarrollo web corporativo, contacto) vive aparte.
@@ -25,7 +25,7 @@ export function SiteNavbar() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-xl backdrop-saturate-150 [@media(prefers-reduced-transparency:reduce)]:bg-black [@media(prefers-reduced-transparency:reduce)]:backdrop-blur-none">
       <div className="mx-auto flex h-12 max-w-6xl items-center justify-between px-5">
         <Link href="/" className="flex items-center gap-2 text-base font-semibold tracking-tight" aria-label="KR System, inicio">
-          <Image src="/logo.png" alt="" width={22} height={24} className="h-6 w-auto" />
+          <Image src="/logo.png" alt="" width={22} height={24} className="h-6 w-[22px] shrink-0 object-contain" />
           KR System
         </Link>
 
@@ -42,7 +42,7 @@ export function SiteNavbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <a
             href="https://krpos.krsystem-corp.com/signup"
             className="hidden rounded-full bg-white px-3.5 py-1.5 text-xs font-medium text-black transition-transform duration-150 ease-out active:scale-[0.96] sm:block"
@@ -69,7 +69,7 @@ export function SiteNavbar() {
 
       <AnimatePresence>
         {menuOpen && (
-          <motion.nav
+          <m.nav
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -95,7 +95,7 @@ export function SiteNavbar() {
                 Probar KR POS gratis
               </a>
             </div>
-          </motion.nav>
+          </m.nav>
         )}
       </AnimatePresence>
     </header>

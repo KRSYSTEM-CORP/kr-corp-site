@@ -31,3 +31,12 @@ Lighthouse headless, mismo Chrome. Antes = producción krsystem-corp.com; despu�
 - Capturas de KR POS: PNG 236-416 KB a WebP 68-129 KB; borrados los PNG y los screenshot-*.png sin uso.
 - Límite de login global en tabla `LoginAttempt` (migración aditiva `20261125120000_login_attempt`, NO aplicada a producción; falla abierta si la tabla no existe).
 - CSP: se probó SRI y nonces; los scripts en línea de Next los bloquean sin render dinámico, así que se mantiene 'unsafe-inline' en script-src.
+
+## Tercera ronda: móvil (5 corridas, Lighthouse simulado, build local)
+Puntajes 90, 84, 90, 91, 90: mediana 90 (85 antes de esta ronda; producción original 74). TBT 90-100 ms, FCP 0,9 s, CLS 0-0,07.
+Cambios: Hero sin framer-motion (animación CSS y componente de servidor), Reveal con IntersectionObserver + CSS, el resto con LazyMotion/domAnimation (`m`), imagen del hero con fetchPriority=high, `will-change` en nebulosas y hero (evita falsos CLS), logo y navbar con ancho fijo.
+Desglose de lo que falta para 95 (puntos perdidos de 100):
+- LCP: unos 8 pts (puntaje 0,67 sobre peso 25). El LCP observado en el navegador es 0,35-0,48 s; los 3,4 s son la simulación de Lighthouse (CPU 4x, RTT 150 ms, 1,6 Mbps) con HTML, CSS bloqueante (11 KB) e imagen del hero (14 KB), que es el elemento más grande del primer pantallazo móvil. Bajarlo exigiría que la imagen no sea el LCP (p. ej. quitar la captura del primer pantallazo móvil): decisión de diseño que no tomé.
+- CLS: 0 a 1 pt (0,06 aparece solo en algunas corridas, por las animaciones de las nebulosas con la CPU frenada).
+- TBT, FCP y Speed Index: 0 pts perdidos.
+- Fuentes: ya es una sola Inter variable latin (49 KB) con preload; una fuente del sistema habría cambiado el diseño.
